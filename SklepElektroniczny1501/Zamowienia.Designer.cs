@@ -30,12 +30,19 @@
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
+            this.Numer_zamowienia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Suma_sprzedarzy = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Data_zamowienia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Numer_zamowienia,
+            this.Suma_sprzedarzy,
+            this.Data_zamowienia});
             this.dataGridView1.Location = new System.Drawing.Point(12, 56);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(961, 726);
@@ -49,6 +56,21 @@
             this.label1.Size = new System.Drawing.Size(82, 13);
             this.label1.TabIndex = 1;
             this.label1.Text = "Lista zamówień:";
+            // 
+            // numer_zamowienia
+            // 
+            this.Numer_zamowienia.HeaderText = "Numer zamówienia";
+            this.Numer_zamowienia.Name = "numer_zamowienia";
+            // 
+            // suma_sprzedarzy
+            // 
+            this.Suma_sprzedarzy.HeaderText = "Suma Sprzedaży";
+            this.Suma_sprzedarzy.Name = "suma_sprzedarzy";
+            // 
+            // data_zamowienia
+            // 
+            this.Data_zamowienia.HeaderText = "Data zamówienia";
+            this.Data_zamowienia.Name = "data_zamowienia";
             // 
             // Zamowienia
             // 
@@ -69,5 +91,8 @@
 
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Numer_zamowienia;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Suma_sprzedarzy;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Data_zamowienia;
     }
 }

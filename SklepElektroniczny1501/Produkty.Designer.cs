@@ -30,12 +30,23 @@
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
+            this.Nazwa = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Model = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Kategoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ilosc_dostepna = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cena = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Nazwa,
+            this.Model,
+            this.Kategoria,
+            this.Ilosc_dostepna,
+            this.Cena});
             this.dataGridView1.Location = new System.Drawing.Point(12, 56);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(941, 662);
@@ -49,6 +60,31 @@
             this.label1.Size = new System.Drawing.Size(85, 13);
             this.label1.TabIndex = 1;
             this.label1.Text = "Lista produktów:";
+            // 
+            // Nazwa
+            // 
+            this.Nazwa.HeaderText = "Nazwa";
+            this.Nazwa.Name = "Nazwa";
+            // 
+            // model
+            // 
+            this.Model.HeaderText = "Model";
+            this.Model.Name = "Model";
+            // 
+            // Kategoria
+            // 
+            this.Kategoria.HeaderText = "Kategoria";
+            this.Kategoria.Name = "Kategoria";
+            // 
+            // ilosc_dostepna
+            // 
+            this.Ilosc_dostepna.HeaderText = "Ilość dostępna";
+            this.Ilosc_dostepna.Name = "Ilosc_dostepna";
+            // 
+            // cena
+            // 
+            this.Cena.HeaderText = "Cena";
+            this.Cena.Name = "Cena";
             // 
             // Produkty
             // 
@@ -69,6 +105,11 @@
 
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nazwa;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Model;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Kategoria;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Ilosc_dostepna;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cena;
     }
 }
 
