@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SklepElektroniczny;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,5 +17,18 @@ namespace SklepElektroniczny1501
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Form produkty = new Produkty();
+            produkty.Show();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Form zamowienia = new Zamowienia();
+            zamowienia.Show();
+        }
     }
+  
 }
