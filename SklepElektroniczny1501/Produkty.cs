@@ -16,5 +16,13 @@ namespace SklepElektroniczny1501
         {
             InitializeComponent();
         }
+
+        private void Produkty_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'dataSetProdukty.produkt' table. You can move, or remove it, as needed.
+            this.produktTableAdapter.Fill(this.dataSetProdukty.produkt);
+
+
+        }
     }
 }

@@ -28,21 +28,29 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
-            this.Numer_zamowienia = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Suma_sprzedarzy = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Data_zamowienia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataSetZamowienia = new SklepElektroniczny1501.DataSetZamowienia();
+            this.zamowienieBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.zamowienieTableAdapter = new SklepElektroniczny1501.DataSetZamowieniaTableAdapters.zamowienieTableAdapter();
+            this.numerzamowieniaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cenaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.datazamowieniaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetZamowienia)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.zamowienieBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Numer_zamowienia,
-            this.Suma_sprzedarzy,
-            this.Data_zamowienia});
+            this.numerzamowieniaDataGridViewTextBoxColumn,
+            this.cenaDataGridViewTextBoxColumn,
+            this.datazamowieniaDataGridViewTextBoxColumn});
+            this.dataGridView1.DataSource = this.zamowienieBindingSource;
             this.dataGridView1.Location = new System.Drawing.Point(12, 56);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(961, 726);
@@ -57,20 +65,37 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Lista zamówień:";
             // 
-            // numer_zamowienia
+            // dataSetZamowienia
             // 
-            this.Numer_zamowienia.HeaderText = "Numer zamówienia";
-            this.Numer_zamowienia.Name = "numer_zamowienia";
+            this.dataSetZamowienia.DataSetName = "DataSetZamowienia";
+            this.dataSetZamowienia.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // suma_sprzedarzy
+            // zamowienieBindingSource
             // 
-            this.Suma_sprzedarzy.HeaderText = "Suma Sprzedaży";
-            this.Suma_sprzedarzy.Name = "suma_sprzedarzy";
+            this.zamowienieBindingSource.DataMember = "zamowienie";
+            this.zamowienieBindingSource.DataSource = this.dataSetZamowienia;
             // 
-            // data_zamowienia
+            // zamowienieTableAdapter
             // 
-            this.Data_zamowienia.HeaderText = "Data zamówienia";
-            this.Data_zamowienia.Name = "data_zamowienia";
+            this.zamowienieTableAdapter.ClearBeforeFill = true;
+            // 
+            // numerzamowieniaDataGridViewTextBoxColumn
+            // 
+            this.numerzamowieniaDataGridViewTextBoxColumn.DataPropertyName = "numer_zamowienia";
+            this.numerzamowieniaDataGridViewTextBoxColumn.HeaderText = "Numer zamówienia";
+            this.numerzamowieniaDataGridViewTextBoxColumn.Name = "numerzamowieniaDataGridViewTextBoxColumn";
+            // 
+            // cenaDataGridViewTextBoxColumn
+            // 
+            this.cenaDataGridViewTextBoxColumn.DataPropertyName = "cena";
+            this.cenaDataGridViewTextBoxColumn.HeaderText = "Suma Sprzedaży";
+            this.cenaDataGridViewTextBoxColumn.Name = "cenaDataGridViewTextBoxColumn";
+            // 
+            // datazamowieniaDataGridViewTextBoxColumn
+            // 
+            this.datazamowieniaDataGridViewTextBoxColumn.DataPropertyName = "data_zamowienia";
+            this.datazamowieniaDataGridViewTextBoxColumn.HeaderText = "Data Zamówienia";
+            this.datazamowieniaDataGridViewTextBoxColumn.Name = "datazamowieniaDataGridViewTextBoxColumn";
             // 
             // Zamowienia
             // 
@@ -81,7 +106,10 @@
             this.Controls.Add(this.dataGridView1);
             this.Name = "Zamowienia";
             this.Text = "Zamowienia";
+            this.Load += new System.EventHandler(this.Zamowienia_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetZamowienia)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.zamowienieBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -94,5 +122,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Numer_zamowienia;
         private System.Windows.Forms.DataGridViewTextBoxColumn Suma_sprzedarzy;
         private System.Windows.Forms.DataGridViewTextBoxColumn Data_zamowienia;
+        private SklepElektroniczny1501.DataSetZamowienia dataSetZamowienia;
+        private System.Windows.Forms.BindingSource zamowienieBindingSource;
+        private SklepElektroniczny1501.DataSetZamowieniaTableAdapters.zamowienieTableAdapter zamowienieTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn numerzamowieniaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cenaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn datazamowieniaDataGridViewTextBoxColumn;
     }
 }

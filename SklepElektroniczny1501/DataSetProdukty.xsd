@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSetProdukty" targetNamespace="http://tempuri.org/DataSetProdukty.xsd" xmlns:mstns="http://tempuri.org/DataSetProdukty.xsd" xmlns="http://tempuri.org/DataSetProdukty.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="masterConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="masterConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.SklepElektroniczny1501.Properties.Settings.GlobalReference.Default.masterConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="produktTableAdapter" GeneratorDataComponentClassName="produktTableAdapter" Name="produkt" UserDataComponentName="produktTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="masterConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        produkt.nazwa, produkt.model, kategoria.kategoria, produkt.ilosc_dostepna, produkt.cena
+FROM            produkt_kategoria INNER JOIN
+                         produkt ON produkt.id = produkt_kategoria.id_produkt INNER JOIN
+                         kategoria ON kategoria.id = produkt_kategoria.id_kategoria</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="nazwa" DataSetColumn="nazwa" />
+              <Mapping SourceColumn="model" DataSetColumn="model" />
+              <Mapping SourceColumn="kategoria" DataSetColumn="kategoria" />
+              <Mapping SourceColumn="ilosc_dostepna" DataSetColumn="ilosc_dostepna" />
+              <Mapping SourceColumn="cena" DataSetColumn="cena" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSetProdukty" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_UserDSName="DataSetProdukty" msprop:Generator_DataSetName="DataSetProdukty">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="produkt" msprop:Generator_RowEvHandlerName="produktRowChangeEventHandler" msprop:Generator_RowDeletedName="produktRowDeleted" msprop:Generator_RowDeletingName="produktRowDeleting" msprop:Generator_RowEvArgName="produktRowChangeEvent" msprop:Generator_TablePropName="produkt" msprop:Generator_RowChangedName="produktRowChanged" msprop:Generator_RowChangingName="produktRowChanging" msprop:Generator_TableClassName="produktDataTable" msprop:Generator_RowClassName="produktRow" msprop:Generator_TableVarName="tableprodukt" msprop:Generator_UserTableName="produkt">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="nazwa" msprop:Generator_ColumnPropNameInRow="nazwa" msprop:Generator_ColumnPropNameInTable="nazwaColumn" msprop:Generator_ColumnVarNameInTable="columnnazwa" msprop:Generator_UserColumnName="nazwa">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="model" msprop:Generator_ColumnPropNameInRow="model" msprop:Generator_ColumnPropNameInTable="modelColumn" msprop:Generator_ColumnVarNameInTable="columnmodel" msprop:Generator_UserColumnName="model">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="kategoria" msprop:Generator_ColumnPropNameInRow="kategoria" msprop:Generator_ColumnPropNameInTable="kategoriaColumn" msprop:Generator_ColumnVarNameInTable="columnkategoria" msprop:Generator_UserColumnName="kategoria">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ilosc_dostepna" msprop:Generator_ColumnPropNameInRow="ilosc_dostepna" msprop:Generator_ColumnPropNameInTable="ilosc_dostepnaColumn" msprop:Generator_ColumnVarNameInTable="columnilosc_dostepna" msprop:Generator_UserColumnName="ilosc_dostepna" type="xs:int" />
+              <xs:element name="cena" msprop:Generator_ColumnPropNameInRow="cena" msprop:Generator_ColumnPropNameInTable="cenaColumn" msprop:Generator_ColumnVarNameInTable="columncena" msprop:Generator_UserColumnName="cena" type="xs:decimal" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

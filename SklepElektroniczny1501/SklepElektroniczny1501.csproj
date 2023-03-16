@@ -52,6 +52,19 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataClasses.dbml</DependentUpon>
     </Compile>
+    <Compile Include="DataSetProdukty.cs">
+      <DependentUpon>DataSetProdukty.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSetProdukty.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetProdukty.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSetZamowienia.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetZamowienia.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Sklep.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -127,6 +140,28 @@
     </None>
     <None Include="DataClasses.dbml.layout">
       <DependentUpon>DataClasses.dbml</DependentUpon>
+    </None>
+    <None Include="DataSetProdukty.xsc">
+      <DependentUpon>DataSetProdukty.xsd</DependentUpon>
+    </None>
+    <None Include="DataSetProdukty.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetProdukty.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSetProdukty.xss">
+      <DependentUpon>DataSetProdukty.xsd</DependentUpon>
+    </None>
+    <None Include="DataSetZamowienia.xsc">
+      <DependentUpon>DataSetZamowienia.xsd</DependentUpon>
+    </None>
+    <None Include="DataSetZamowienia.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetZamowienia.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSetZamowienia.xss">
+      <DependentUpon>DataSetZamowienia.xsd</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSetZamowienia" targetNamespace="http://tempuri.org/DataSetZamowienia.xsd" xmlns:mstns="http://tempuri.org/DataSetZamowienia.xsd" xmlns="http://tempuri.org/DataSetZamowienia.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="masterConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="masterConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.SklepElektroniczny1501.Properties.Settings.GlobalReference.Default.masterConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="zamowienieTableAdapter" GeneratorDataComponentClassName="zamowienieTableAdapter" Name="zamowienie" UserDataComponentName="zamowienieTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="masterConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        zamowienie.numer_zamowienia, zamowienie_produkt.cena, zamowienie.data_zamowienia
+FROM            zamowienie_produkt INNER JOIN
+                         zamowienie ON zamowienie.id = zamowienie_produkt.id_zamowienie</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="numer_zamowienia" DataSetColumn="numer_zamowienia" />
+              <Mapping SourceColumn="cena" DataSetColumn="cena" />
+              <Mapping SourceColumn="data_zamowienia" DataSetColumn="data_zamowienia" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSetZamowienia" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_UserDSName="DataSetZamowienia" msprop:Generator_DataSetName="DataSetZamowienia">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="zamowienie" msprop:Generator_RowEvHandlerName="zamowienieRowChangeEventHandler" msprop:Generator_RowDeletedName="zamowienieRowDeleted" msprop:Generator_RowDeletingName="zamowienieRowDeleting" msprop:Generator_RowEvArgName="zamowienieRowChangeEvent" msprop:Generator_TablePropName="zamowienie" msprop:Generator_RowChangedName="zamowienieRowChanged" msprop:Generator_RowChangingName="zamowienieRowChanging" msprop:Generator_TableClassName="zamowienieDataTable" msprop:Generator_RowClassName="zamowienieRow" msprop:Generator_TableVarName="tablezamowienie" msprop:Generator_UserTableName="zamowienie">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="numer_zamowienia" msprop:Generator_ColumnPropNameInRow="numer_zamowienia" msprop:Generator_ColumnPropNameInTable="numer_zamowieniaColumn" msprop:Generator_ColumnVarNameInTable="columnnumer_zamowienia" msprop:Generator_UserColumnName="numer_zamowienia">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="8" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="cena" msprop:Generator_ColumnPropNameInRow="cena" msprop:Generator_ColumnPropNameInTable="cenaColumn" msprop:Generator_ColumnVarNameInTable="columncena" msprop:Generator_UserColumnName="cena" type="xs:decimal" />
+              <xs:element name="data_zamowienia" msprop:Generator_ColumnPropNameInRow="data_zamowienia" msprop:Generator_ColumnPropNameInTable="data_zamowieniaColumn" msprop:Generator_ColumnVarNameInTable="columndata_zamowienia" msprop:Generator_UserColumnName="data_zamowienia" type="xs:dateTime" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

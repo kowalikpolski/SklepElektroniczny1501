@@ -28,25 +28,37 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
-            this.Nazwa = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Model = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Kategoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Ilosc_dostepna = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cena = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.produktBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.dataSetProdukty = new SklepElektroniczny1501.DataSetProdukty();
+            this.dataSetProduktyBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.produktBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.produktTableAdapter = new SklepElektroniczny1501.DataSetProduktyTableAdapters.produktTableAdapter();
+            this.nazwaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.modelDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.kategoriaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.iloscdostepnaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cenaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.produktBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetProdukty)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetProduktyBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.produktBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Nazwa,
-            this.Model,
-            this.Kategoria,
-            this.Ilosc_dostepna,
-            this.Cena});
+            this.nazwaDataGridViewTextBoxColumn,
+            this.modelDataGridViewTextBoxColumn,
+            this.kategoriaDataGridViewTextBoxColumn,
+            this.iloscdostepnaDataGridViewTextBoxColumn,
+            this.cenaDataGridViewTextBoxColumn});
+            this.dataGridView1.DataSource = this.produktBindingSource;
             this.dataGridView1.Location = new System.Drawing.Point(12, 56);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(941, 662);
@@ -61,30 +73,54 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Lista produktów:";
             // 
-            // Nazwa
+            // dataSetProdukty
             // 
-            this.Nazwa.HeaderText = "Nazwa";
-            this.Nazwa.Name = "Nazwa";
+            this.dataSetProdukty.DataSetName = "DataSetProdukty";
+            this.dataSetProdukty.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // model
+            // dataSetProduktyBindingSource
             // 
-            this.Model.HeaderText = "Model";
-            this.Model.Name = "Model";
+            this.dataSetProduktyBindingSource.DataSource = this.dataSetProdukty;
+            this.dataSetProduktyBindingSource.Position = 0;
             // 
-            // Kategoria
+            // produktBindingSource
             // 
-            this.Kategoria.HeaderText = "Kategoria";
-            this.Kategoria.Name = "Kategoria";
+            this.produktBindingSource.DataMember = "produkt";
+            this.produktBindingSource.DataSource = this.dataSetProdukty;
             // 
-            // ilosc_dostepna
+            // produktTableAdapter
             // 
-            this.Ilosc_dostepna.HeaderText = "Ilość dostępna";
-            this.Ilosc_dostepna.Name = "Ilosc_dostepna";
+            this.produktTableAdapter.ClearBeforeFill = true;
             // 
-            // cena
+            // nazwaDataGridViewTextBoxColumn
             // 
-            this.Cena.HeaderText = "Cena";
-            this.Cena.Name = "Cena";
+            this.nazwaDataGridViewTextBoxColumn.DataPropertyName = "nazwa";
+            this.nazwaDataGridViewTextBoxColumn.HeaderText = "Nazwa";
+            this.nazwaDataGridViewTextBoxColumn.Name = "nazwaDataGridViewTextBoxColumn";
+            // 
+            // modelDataGridViewTextBoxColumn
+            // 
+            this.modelDataGridViewTextBoxColumn.DataPropertyName = "model";
+            this.modelDataGridViewTextBoxColumn.HeaderText = "Model";
+            this.modelDataGridViewTextBoxColumn.Name = "modelDataGridViewTextBoxColumn";
+            // 
+            // kategoriaDataGridViewTextBoxColumn
+            // 
+            this.kategoriaDataGridViewTextBoxColumn.DataPropertyName = "kategoria";
+            this.kategoriaDataGridViewTextBoxColumn.HeaderText = "Kategoria";
+            this.kategoriaDataGridViewTextBoxColumn.Name = "kategoriaDataGridViewTextBoxColumn";
+            // 
+            // iloscdostepnaDataGridViewTextBoxColumn
+            // 
+            this.iloscdostepnaDataGridViewTextBoxColumn.DataPropertyName = "ilosc_dostepna";
+            this.iloscdostepnaDataGridViewTextBoxColumn.HeaderText = "Ilość dostępna";
+            this.iloscdostepnaDataGridViewTextBoxColumn.Name = "iloscdostepnaDataGridViewTextBoxColumn";
+            // 
+            // cenaDataGridViewTextBoxColumn
+            // 
+            this.cenaDataGridViewTextBoxColumn.DataPropertyName = "cena";
+            this.cenaDataGridViewTextBoxColumn.HeaderText = "Cena";
+            this.cenaDataGridViewTextBoxColumn.Name = "cenaDataGridViewTextBoxColumn";
             // 
             // Produkty
             // 
@@ -95,7 +131,12 @@
             this.Controls.Add(this.dataGridView1);
             this.Name = "Produkty";
             this.Text = "Produkty";
+            this.Load += new System.EventHandler(this.Produkty_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.produktBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetProdukty)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetProduktyBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.produktBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -105,11 +146,16 @@
 
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nazwa;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Model;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Kategoria;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Ilosc_dostepna;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Cena;
+        private System.Windows.Forms.BindingSource produktBindingSource1;
+        private System.Windows.Forms.BindingSource dataSetProduktyBindingSource;
+        private DataSetProdukty dataSetProdukty;
+        private System.Windows.Forms.BindingSource produktBindingSource;
+        private DataSetProduktyTableAdapters.produktTableAdapter produktTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nazwaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn modelDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn kategoriaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn iloscdostepnaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cenaDataGridViewTextBoxColumn;
     }
 }
 
