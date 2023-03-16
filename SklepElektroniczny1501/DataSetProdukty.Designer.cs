@@ -289,6 +289,8 @@ namespace SklepElektroniczny1501 {
             
             private global::System.Data.DataColumn columncena;
             
+            private global::System.Data.DataColumn columnid;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public produktDataTable() {
@@ -364,6 +366,14 @@ namespace SklepElektroniczny1501 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn idColumn {
+                get {
+                    return this.columnid;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -399,17 +409,25 @@ namespace SklepElektroniczny1501 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public produktRow AddproduktRow(string nazwa, string model, string kategoria, int ilosc_dostepna, decimal cena) {
+            public produktRow AddproduktRow(string nazwa, string model, string kategoria, int ilosc_dostepna, decimal cena, int id) {
                 produktRow rowproduktRow = ((produktRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         nazwa,
                         model,
                         kategoria,
                         ilosc_dostepna,
-                        cena};
+                        cena,
+                        id};
                 rowproduktRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowproduktRow);
                 return rowproduktRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public produktRow FindByid(int id) {
+                return ((produktRow)(this.Rows.Find(new object[] {
+                            id})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -434,6 +452,7 @@ namespace SklepElektroniczny1501 {
                 this.columnkategoria = base.Columns["kategoria"];
                 this.columnilosc_dostepna = base.Columns["ilosc_dostepna"];
                 this.columncena = base.Columns["cena"];
+                this.columnid = base.Columns["id"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -449,6 +468,10 @@ namespace SklepElektroniczny1501 {
                 base.Columns.Add(this.columnilosc_dostepna);
                 this.columncena = new global::System.Data.DataColumn("cena", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columncena);
+                this.columnid = new global::System.Data.DataColumn("id", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnid);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnid}, true));
                 this.columnnazwa.AllowDBNull = false;
                 this.columnnazwa.MaxLength = 30;
                 this.columnmodel.AllowDBNull = false;
@@ -457,6 +480,8 @@ namespace SklepElektroniczny1501 {
                 this.columnkategoria.MaxLength = 30;
                 this.columnilosc_dostepna.AllowDBNull = false;
                 this.columncena.AllowDBNull = false;
+                this.columnid.AllowDBNull = false;
+                this.columnid.Unique = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -651,6 +676,17 @@ namespace SklepElektroniczny1501 {
                     this[this.tableprodukt.cenaColumn] = value;
                 }
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int id {
+                get {
+                    return ((int)(this[this.tableprodukt.idColumn]));
+                }
+                set {
+                    this[this.tableprodukt.idColumn] = value;
+                }
+            }
         }
         
         /// <summary>
@@ -817,6 +853,7 @@ namespace SklepElektroniczny1501.DataSetProduktyTableAdapters {
             tableMapping.ColumnMappings.Add("kategoria", "kategoria");
             tableMapping.ColumnMappings.Add("ilosc_dostepna", "ilosc_dostepna");
             tableMapping.ColumnMappings.Add("cena", "cena");
+            tableMapping.ColumnMappings.Add("id", "id");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -833,7 +870,7 @@ namespace SklepElektroniczny1501.DataSetProduktyTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT        produkt.nazwa, produkt.model, kategoria.kategoria, produkt.ilosc_dostepna, produkt.cena
+            this._commandCollection[0].CommandText = @"SELECT        produkt.id, produkt.nazwa, produkt.model, kategoria.kategoria, produkt.ilosc_dostepna, produkt.cena
 FROM            produkt_kategoria INNER JOIN
                          produkt ON produkt.id = produkt_kategoria.id_produkt INNER JOIN
                          kategoria ON kategoria.id = produkt_kategoria.id_kategoria";

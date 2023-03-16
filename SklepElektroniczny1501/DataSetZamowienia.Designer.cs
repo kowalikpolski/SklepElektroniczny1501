@@ -281,9 +281,11 @@ namespace SklepElektroniczny1501 {
             
             private global::System.Data.DataColumn columnnumer_zamowienia;
             
-            private global::System.Data.DataColumn columncena;
-            
             private global::System.Data.DataColumn columndata_zamowienia;
+            
+            private global::System.Data.DataColumn columnid;
+            
+            private global::System.Data.DataColumn columnExpr1;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
@@ -328,17 +330,25 @@ namespace SklepElektroniczny1501 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn cenaColumn {
+            public global::System.Data.DataColumn data_zamowieniaColumn {
                 get {
-                    return this.columncena;
+                    return this.columndata_zamowienia;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn data_zamowieniaColumn {
+            public global::System.Data.DataColumn idColumn {
                 get {
-                    return this.columndata_zamowienia;
+                    return this.columnid;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn Expr1Column {
+                get {
+                    return this.columnExpr1;
                 }
             }
             
@@ -379,15 +389,23 @@ namespace SklepElektroniczny1501 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public zamowienieRow AddzamowienieRow(string numer_zamowienia, decimal cena, System.DateTime data_zamowienia) {
+            public zamowienieRow AddzamowienieRow(string numer_zamowienia, System.DateTime data_zamowienia, int id, decimal Expr1) {
                 zamowienieRow rowzamowienieRow = ((zamowienieRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         numer_zamowienia,
-                        cena,
-                        data_zamowienia};
+                        data_zamowienia,
+                        id,
+                        Expr1};
                 rowzamowienieRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowzamowienieRow);
                 return rowzamowienieRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public zamowienieRow FindByid(int id) {
+                return ((zamowienieRow)(this.Rows.Find(new object[] {
+                            id})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -408,8 +426,9 @@ namespace SklepElektroniczny1501 {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             internal void InitVars() {
                 this.columnnumer_zamowienia = base.Columns["numer_zamowienia"];
-                this.columncena = base.Columns["cena"];
                 this.columndata_zamowienia = base.Columns["data_zamowienia"];
+                this.columnid = base.Columns["id"];
+                this.columnExpr1 = base.Columns["Expr1"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -417,14 +436,20 @@ namespace SklepElektroniczny1501 {
             private void InitClass() {
                 this.columnnumer_zamowienia = new global::System.Data.DataColumn("numer_zamowienia", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnnumer_zamowienia);
-                this.columncena = new global::System.Data.DataColumn("cena", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columncena);
                 this.columndata_zamowienia = new global::System.Data.DataColumn("data_zamowienia", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columndata_zamowienia);
+                this.columnid = new global::System.Data.DataColumn("id", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnid);
+                this.columnExpr1 = new global::System.Data.DataColumn("Expr1", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnExpr1);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnid}, true));
                 this.columnnumer_zamowienia.AllowDBNull = false;
                 this.columnnumer_zamowienia.MaxLength = 8;
-                this.columncena.AllowDBNull = false;
                 this.columndata_zamowienia.AllowDBNull = false;
+                this.columnid.AllowDBNull = false;
+                this.columnid.Unique = true;
+                this.columnExpr1.ReadOnly = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -578,17 +603,6 @@ namespace SklepElektroniczny1501 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public decimal cena {
-                get {
-                    return ((decimal)(this[this.tablezamowienie.cenaColumn]));
-                }
-                set {
-                    this[this.tablezamowienie.cenaColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public System.DateTime data_zamowienia {
                 get {
                     return ((global::System.DateTime)(this[this.tablezamowienie.data_zamowieniaColumn]));
@@ -596,6 +610,45 @@ namespace SklepElektroniczny1501 {
                 set {
                     this[this.tablezamowienie.data_zamowieniaColumn] = value;
                 }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int id {
+                get {
+                    return ((int)(this[this.tablezamowienie.idColumn]));
+                }
+                set {
+                    this[this.tablezamowienie.idColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public decimal Expr1 {
+                get {
+                    try {
+                        return ((decimal)(this[this.tablezamowienie.Expr1Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Expr1\' in table \'zamowienie\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablezamowienie.Expr1Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsExpr1Null() {
+                return this.IsNull(this.tablezamowienie.Expr1Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetExpr1Null() {
+                this[this.tablezamowienie.Expr1Column] = global::System.Convert.DBNull;
             }
         }
         
@@ -759,8 +812,9 @@ namespace SklepElektroniczny1501.DataSetZamowieniaTableAdapters {
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "zamowienie";
             tableMapping.ColumnMappings.Add("numer_zamowienia", "numer_zamowienia");
-            tableMapping.ColumnMappings.Add("cena", "cena");
             tableMapping.ColumnMappings.Add("data_zamowienia", "data_zamowienia");
+            tableMapping.ColumnMappings.Add("id", "id");
+            tableMapping.ColumnMappings.Add("Expr1", "Expr1");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -777,9 +831,10 @@ namespace SklepElektroniczny1501.DataSetZamowieniaTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT        zamowienie.numer_zamowienia, zamowienie_produkt.cena, zamowienie.da" +
-                "ta_zamowienia\r\nFROM            zamowienie_produkt INNER JOIN\r\n                  " +
-                "       zamowienie ON zamowienie.id = zamowienie_produkt.id_zamowienie";
+            this._commandCollection[0].CommandText = @"SELECT        zamowienie.id, zamowienie.numer_zamowienia, SUM(zamowienie_produkt.cena) AS Expr1, zamowienie.data_zamowienia
+FROM            zamowienie INNER JOIN
+                         zamowienie_produkt ON zamowienie.id = zamowienie_produkt.id_zamowienie
+GROUP BY zamowienie.id, zamowienie.numer_zamowienia, zamowienie.data_zamowienia";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         

@@ -32,9 +32,9 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.produktBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.produktBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataSetProdukty = new SklepElektroniczny1501.DataSetProdukty();
             this.dataSetProduktyBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.produktBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.produktTableAdapter = new SklepElektroniczny1501.DataSetProduktyTableAdapters.produktTableAdapter();
             this.nazwaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.modelDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -43,13 +43,15 @@
             this.cenaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.produktBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.produktBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetProdukty)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetProduktyBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.produktBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -60,9 +62,12 @@
             this.cenaDataGridViewTextBoxColumn});
             this.dataGridView1.DataSource = this.produktBindingSource;
             this.dataGridView1.Location = new System.Drawing.Point(12, 56);
+            this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(941, 662);
             this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.DoubleClick += new System.EventHandler(this.dataGridView1_DoubleClick);
             // 
             // label1
             // 
@@ -72,6 +77,11 @@
             this.label1.Size = new System.Drawing.Size(85, 13);
             this.label1.TabIndex = 1;
             this.label1.Text = "Lista produktów:";
+            // 
+            // produktBindingSource
+            // 
+            this.produktBindingSource.DataMember = "produkt";
+            this.produktBindingSource.DataSource = this.dataSetProdukty;
             // 
             // dataSetProdukty
             // 
@@ -83,11 +93,6 @@
             this.dataSetProduktyBindingSource.DataSource = this.dataSetProdukty;
             this.dataSetProduktyBindingSource.Position = 0;
             // 
-            // produktBindingSource
-            // 
-            this.produktBindingSource.DataMember = "produkt";
-            this.produktBindingSource.DataSource = this.dataSetProdukty;
-            // 
             // produktTableAdapter
             // 
             this.produktTableAdapter.ClearBeforeFill = true;
@@ -97,30 +102,40 @@
             this.nazwaDataGridViewTextBoxColumn.DataPropertyName = "nazwa";
             this.nazwaDataGridViewTextBoxColumn.HeaderText = "Nazwa";
             this.nazwaDataGridViewTextBoxColumn.Name = "nazwaDataGridViewTextBoxColumn";
+            this.nazwaDataGridViewTextBoxColumn.ReadOnly = true;
+            this.nazwaDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // modelDataGridViewTextBoxColumn
             // 
             this.modelDataGridViewTextBoxColumn.DataPropertyName = "model";
             this.modelDataGridViewTextBoxColumn.HeaderText = "Model";
             this.modelDataGridViewTextBoxColumn.Name = "modelDataGridViewTextBoxColumn";
+            this.modelDataGridViewTextBoxColumn.ReadOnly = true;
+            this.modelDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // kategoriaDataGridViewTextBoxColumn
             // 
             this.kategoriaDataGridViewTextBoxColumn.DataPropertyName = "kategoria";
             this.kategoriaDataGridViewTextBoxColumn.HeaderText = "Kategoria";
             this.kategoriaDataGridViewTextBoxColumn.Name = "kategoriaDataGridViewTextBoxColumn";
+            this.kategoriaDataGridViewTextBoxColumn.ReadOnly = true;
+            this.kategoriaDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // iloscdostepnaDataGridViewTextBoxColumn
             // 
             this.iloscdostepnaDataGridViewTextBoxColumn.DataPropertyName = "ilosc_dostepna";
             this.iloscdostepnaDataGridViewTextBoxColumn.HeaderText = "Ilość dostępna";
             this.iloscdostepnaDataGridViewTextBoxColumn.Name = "iloscdostepnaDataGridViewTextBoxColumn";
+            this.iloscdostepnaDataGridViewTextBoxColumn.ReadOnly = true;
+            this.iloscdostepnaDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // cenaDataGridViewTextBoxColumn
             // 
             this.cenaDataGridViewTextBoxColumn.DataPropertyName = "cena";
             this.cenaDataGridViewTextBoxColumn.HeaderText = "Cena";
             this.cenaDataGridViewTextBoxColumn.Name = "cenaDataGridViewTextBoxColumn";
+            this.cenaDataGridViewTextBoxColumn.ReadOnly = true;
+            this.cenaDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // Produkty
             // 
@@ -134,9 +149,9 @@
             this.Load += new System.EventHandler(this.Produkty_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.produktBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.produktBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetProdukty)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetProduktyBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.produktBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
