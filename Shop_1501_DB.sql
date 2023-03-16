@@ -1,5 +1,5 @@
 create table produkt (id int primary key,nazwa varchar(30) not null,model varchar(30) not null,opis varchar(100),ilosc_dostepna int not null,cena money not null)
-create table zamowienie (id int primary key, numer_zamowienia char(8) not null, data_zamowienia date not null)
+create table zamowienie (id int primary key, numer_zamowienia char(8) not null unique, data_zamowienia date not null)
 create table kategoria (id int primary key, kategoria varchar(30) not null)
 create table produkt_kategoria (id int primary key, id_produkt int foreign key references produkt(id) not null,id_kategoria int foreign key references kategoria(id) not null)
 create table zamowienie_produkt (id int primary key, id_produkt int foreign key references produkt(id) not null,id_zamowienie int foreign key references zamowienie(id) not null, ilosc int not null, cena money not null)
