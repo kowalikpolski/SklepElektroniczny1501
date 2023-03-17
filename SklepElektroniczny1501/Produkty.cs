@@ -34,7 +34,8 @@ namespace SklepElektroniczny1501
                 var name = dataGridView1.Rows[selectedItem].Cells[0].Value.ToString();
                 var model = dataGridView1.Rows[selectedItem].Cells[1].Value.ToString();
                 Form produkt = new ProduktyEdycja(name,model);
-                produkt.ShowDialog();
+                produkt.Show();
+                this.Close();
             }
            
         }
@@ -50,7 +51,8 @@ namespace SklepElektroniczny1501
         private void nowyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Form produkt = new ProduktyEdycja(null, null);
-            produkt.ShowDialog();
+            produkt.Show();
+            this.Close();
         }
 
         private void edytujToolStripMenuItem_Click(object sender, EventArgs e)
@@ -59,7 +61,8 @@ namespace SklepElektroniczny1501
             var name = dataGridView1.Rows[selectedItem].Cells[0].Value.ToString();
             var model = dataGridView1.Rows[selectedItem].Cells[1].Value.ToString();
             Form produkt = new ProduktyEdycja(name, model);
-            produkt.ShowDialog();
+            produkt.Show();
+            this.Close();
         }
     }
 }

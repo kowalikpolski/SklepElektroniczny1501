@@ -21,13 +21,14 @@ namespace SklepElektroniczny1501
         private void button1_Click(object sender, EventArgs e)
         {
             Form produkty = new Produkty();
-            produkty.ShowDialog();
+            produkty.Show();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             Form zamowienia = new Zamowienia();
             zamowienia.ShowDialog();
+
         }
     }
   

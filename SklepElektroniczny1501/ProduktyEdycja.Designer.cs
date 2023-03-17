@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.button1 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
@@ -41,12 +40,7 @@
             this.textBoxPrice = new System.Windows.Forms.TextBox();
             this.textBoxAmount = new System.Windows.Forms.TextBox();
             this.comboBoxCategory = new System.Windows.Forms.ComboBox();
-            this.masterDataSet = new SklepElektroniczny1501.masterDataSet();
-            this.kategoriaBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.kategoriaTableAdapter = new SklepElektroniczny1501.masterDataSetTableAdapters.kategoriaTableAdapter();
             this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.masterDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.kategoriaBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -57,6 +51,7 @@
             this.button1.TabIndex = 0;
             this.button1.Text = "Zapisz";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -144,8 +139,8 @@
             this.textBoxName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBoxName.Location = new System.Drawing.Point(230, 10);
             this.textBoxName.Margin = new System.Windows.Forms.Padding(10);
-            this.textBoxName.MaximumSize = new System.Drawing.Size(200, 0);
-            this.textBoxName.MinimumSize = new System.Drawing.Size(0, 22);
+            this.textBoxName.MaximumSize = new System.Drawing.Size(200, 4);
+            this.textBoxName.MinimumSize = new System.Drawing.Size(4, 22);
             this.textBoxName.Name = "textBoxName";
             this.textBoxName.Size = new System.Drawing.Size(200, 22);
             this.textBoxName.TabIndex = 5;
@@ -155,8 +150,8 @@
             this.textBoxModel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBoxModel.Location = new System.Drawing.Point(230, 86);
             this.textBoxModel.Margin = new System.Windows.Forms.Padding(10);
-            this.textBoxModel.MaximumSize = new System.Drawing.Size(200, 0);
-            this.textBoxModel.MinimumSize = new System.Drawing.Size(0, 22);
+            this.textBoxModel.MaximumSize = new System.Drawing.Size(200, 4);
+            this.textBoxModel.MinimumSize = new System.Drawing.Size(4, 22);
             this.textBoxModel.Name = "textBoxModel";
             this.textBoxModel.Size = new System.Drawing.Size(200, 22);
             this.textBoxModel.TabIndex = 6;
@@ -166,8 +161,8 @@
             this.textBoxPrice.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBoxPrice.Location = new System.Drawing.Point(230, 314);
             this.textBoxPrice.Margin = new System.Windows.Forms.Padding(10);
-            this.textBoxPrice.MaximumSize = new System.Drawing.Size(200, 0);
-            this.textBoxPrice.MinimumSize = new System.Drawing.Size(0, 22);
+            this.textBoxPrice.MaximumSize = new System.Drawing.Size(200, 4);
+            this.textBoxPrice.MinimumSize = new System.Drawing.Size(4, 22);
             this.textBoxPrice.Name = "textBoxPrice";
             this.textBoxPrice.Size = new System.Drawing.Size(200, 22);
             this.textBoxPrice.TabIndex = 7;
@@ -177,15 +172,14 @@
             this.textBoxAmount.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBoxAmount.Location = new System.Drawing.Point(230, 238);
             this.textBoxAmount.Margin = new System.Windows.Forms.Padding(10);
-            this.textBoxAmount.MaximumSize = new System.Drawing.Size(200, 0);
-            this.textBoxAmount.MinimumSize = new System.Drawing.Size(0, 22);
+            this.textBoxAmount.MaximumSize = new System.Drawing.Size(200, 4);
+            this.textBoxAmount.MinimumSize = new System.Drawing.Size(4, 22);
             this.textBoxAmount.Name = "textBoxAmount";
             this.textBoxAmount.Size = new System.Drawing.Size(200, 22);
             this.textBoxAmount.TabIndex = 8;
             // 
             // comboBoxCategory
             // 
-            this.comboBoxCategory.DataSource = this.kategoriaBindingSource;
             this.comboBoxCategory.DisplayMember = "kategoria";
             this.comboBoxCategory.Dock = System.Windows.Forms.DockStyle.Fill;
             this.comboBoxCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -196,20 +190,7 @@
             this.comboBoxCategory.Name = "comboBoxCategory";
             this.comboBoxCategory.Size = new System.Drawing.Size(200, 21);
             this.comboBoxCategory.TabIndex = 9;
-            // 
-            // masterDataSet
-            // 
-            this.masterDataSet.DataSetName = "masterDataSet";
-            this.masterDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // kategoriaBindingSource
-            // 
-            this.kategoriaBindingSource.DataMember = "kategoria";
-            this.kategoriaBindingSource.DataSource = this.masterDataSet;
-            // 
-            // kategoriaTableAdapter
-            // 
-            this.kategoriaTableAdapter.ClearBeforeFill = true;
+            this.comboBoxCategory.ValueMember = "kategoria";
             // 
             // ProduktyEdycja
             // 
@@ -220,11 +201,8 @@
             this.Controls.Add(this.button1);
             this.Name = "ProduktyEdycja";
             this.Text = "Dodawanie/Edycja Produktu";
-            this.Load += new System.EventHandler(this.ProduktyEdycja_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.masterDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.kategoriaBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -243,8 +221,5 @@
         private System.Windows.Forms.TextBox textBoxPrice;
         private System.Windows.Forms.TextBox textBoxAmount;
         private System.Windows.Forms.ComboBox comboBoxCategory;
-        private masterDataSet masterDataSet;
-        private System.Windows.Forms.BindingSource kategoriaBindingSource;
-        private masterDataSetTableAdapters.kategoriaTableAdapter kategoriaTableAdapter;
     }
 }
