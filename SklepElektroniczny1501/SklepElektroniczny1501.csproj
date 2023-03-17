@@ -134,6 +134,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ZamowieniaEdycja.resx">
       <DependentUpon>ZamowieniaEdycja.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ZamowieniePozycjeEdycja.resx">
       <DependentUpon>ZamowieniePozycjeEdycja.cs</DependentUpon>
