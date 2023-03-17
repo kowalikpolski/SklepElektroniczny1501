@@ -48,4 +48,11 @@ namespace SklepElektroniczny1501
 
            
         }
+
+        private void ProduktyEdycja_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'masterDataSet.kategoria' table. You can move, or remove it, as needed.
+            this.kategoriaTableAdapter.Fill(this.masterDataSet.kategoria);
+
+        }
     } }
