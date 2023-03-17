@@ -831,8 +831,8 @@ namespace SklepElektroniczny1501.DataSetZamowieniaTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT        zamowienie.id, zamowienie.numer_zamowienia, SUM(zamowienie_produkt.cena) AS Expr1, zamowienie.data_zamowienia
-FROM            zamowienie INNER JOIN
+            this._commandCollection[0].CommandText = @"SELECT        zamowienie.id, zamowienie.numer_zamowienia, ISNULL(SUM(zamowienie_produkt.cena), 0) AS Expr1, zamowienie.data_zamowienia
+FROM            zamowienie LEFT OUTER JOIN
                          zamowienie_produkt ON zamowienie.id = zamowienie_produkt.id_zamowienie
 GROUP BY zamowienie.id, zamowienie.numer_zamowienia, zamowienie.data_zamowienia";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;

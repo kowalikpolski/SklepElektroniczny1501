@@ -12,8 +12,8 @@
               <DbSource ConnectionRef="masterConnectionString (Settings)" DbObjectName="master.dbo.zamowienie" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT        zamowienie.id, zamowienie.numer_zamowienia, SUM(zamowienie_produkt.cena) AS Expr1, zamowienie.data_zamowienia
-FROM            zamowienie INNER JOIN
+                    <CommandText>SELECT        zamowienie.id, zamowienie.numer_zamowienia, ISNULL(SUM(zamowienie_produkt.cena), 0) AS Expr1, zamowienie.data_zamowienia
+FROM            zamowienie LEFT OUTER JOIN
                          zamowienie_produkt ON zamowienie.id = zamowienie_produkt.id_zamowienie
 GROUP BY zamowienie.id, zamowienie.numer_zamowienia, zamowienie.data_zamowienia</CommandText>
                     <Parameters />
@@ -37,19 +37,19 @@ GROUP BY zamowienie.id, zamowienie.numer_zamowienia, zamowienie.data_zamowienia<
   <xs:element name="DataSetZamowienia" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="DataSetZamowienia" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSetZamowienia">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="zamowienie" msprop:Generator_RowClassName="zamowienieRow" msprop:Generator_RowEvHandlerName="zamowienieRowChangeEventHandler" msprop:Generator_RowDeletedName="zamowienieRowDeleted" msprop:Generator_RowDeletingName="zamowienieRowDeleting" msprop:Generator_RowEvArgName="zamowienieRowChangeEvent" msprop:Generator_TablePropName="zamowienie" msprop:Generator_RowChangedName="zamowienieRowChanged" msprop:Generator_UserTableName="zamowienie" msprop:Generator_RowChangingName="zamowienieRowChanging" msprop:Generator_TableClassName="zamowienieDataTable" msprop:Generator_TableVarName="tablezamowienie">
+        <xs:element name="zamowienie" msprop:Generator_RowEvHandlerName="zamowienieRowChangeEventHandler" msprop:Generator_RowDeletedName="zamowienieRowDeleted" msprop:Generator_RowDeletingName="zamowienieRowDeleting" msprop:Generator_RowEvArgName="zamowienieRowChangeEvent" msprop:Generator_TablePropName="zamowienie" msprop:Generator_RowChangedName="zamowienieRowChanged" msprop:Generator_UserTableName="zamowienie" msprop:Generator_RowChangingName="zamowienieRowChanging" msprop:Generator_RowClassName="zamowienieRow" msprop:Generator_TableClassName="zamowienieDataTable" msprop:Generator_TableVarName="tablezamowienie">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="numer_zamowienia" msprop:Generator_UserColumnName="numer_zamowienia" msprop:Generator_ColumnPropNameInTable="numer_zamowieniaColumn" msprop:Generator_ColumnPropNameInRow="numer_zamowienia" msprop:Generator_ColumnVarNameInTable="columnnumer_zamowienia">
+              <xs:element name="numer_zamowienia" msprop:Generator_ColumnPropNameInTable="numer_zamowieniaColumn" msprop:Generator_ColumnPropNameInRow="numer_zamowienia" msprop:Generator_UserColumnName="numer_zamowienia" msprop:Generator_ColumnVarNameInTable="columnnumer_zamowienia">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="8" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="data_zamowienia" msprop:Generator_UserColumnName="data_zamowienia" msprop:Generator_ColumnPropNameInTable="data_zamowieniaColumn" msprop:Generator_ColumnPropNameInRow="data_zamowienia" msprop:Generator_ColumnVarNameInTable="columndata_zamowienia" type="xs:dateTime" />
-              <xs:element name="id" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_UserColumnName="id" type="xs:int" />
-              <xs:element name="Expr1" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="Expr1" msprop:Generator_ColumnPropNameInTable="Expr1Column" msprop:Generator_ColumnVarNameInTable="columnExpr1" msprop:Generator_UserColumnName="Expr1" type="xs:decimal" minOccurs="0" />
+              <xs:element name="data_zamowienia" msprop:Generator_ColumnPropNameInTable="data_zamowieniaColumn" msprop:Generator_ColumnPropNameInRow="data_zamowienia" msprop:Generator_UserColumnName="data_zamowienia" msprop:Generator_ColumnVarNameInTable="columndata_zamowienia" type="xs:dateTime" />
+              <xs:element name="id" msprop:Generator_UserColumnName="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnVarNameInTable="columnid" type="xs:int" />
+              <xs:element name="Expr1" msdata:ReadOnly="true" msprop:Generator_UserColumnName="Expr1" msprop:Generator_ColumnPropNameInTable="Expr1Column" msprop:Generator_ColumnPropNameInRow="Expr1" msprop:Generator_ColumnVarNameInTable="columnExpr1" type="xs:decimal" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
