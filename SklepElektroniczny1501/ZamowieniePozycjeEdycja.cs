@@ -12,9 +12,11 @@ namespace SklepElektroniczny1501
 {
     public partial class ZamowieniePozycjeEdycja : Form
     {
-        public ZamowieniePozycjeEdycja()
+        public ZamowieniePozycjeEdycja(string name, string model)
         {
             InitializeComponent();
         }
+
+        
     }
 }
