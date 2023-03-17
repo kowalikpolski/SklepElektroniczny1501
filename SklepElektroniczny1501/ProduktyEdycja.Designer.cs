@@ -81,82 +81,107 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 0);
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label1.Location = new System.Drawing.Point(10, 10);
+            this.label1.Margin = new System.Windows.Forms.Padding(10);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(40, 13);
+            this.label1.Size = new System.Drawing.Size(200, 56);
             this.label1.TabIndex = 0;
             this.label1.Text = "Nazwa";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 76);
+            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label2.Location = new System.Drawing.Point(10, 86);
+            this.label2.Margin = new System.Windows.Forms.Padding(10);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(36, 13);
+            this.label2.Size = new System.Drawing.Size(200, 56);
             this.label2.TabIndex = 1;
             this.label2.Text = "Model";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 152);
+            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label3.Location = new System.Drawing.Point(10, 162);
+            this.label3.Margin = new System.Windows.Forms.Padding(10);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(52, 13);
+            this.label3.Size = new System.Drawing.Size(200, 56);
             this.label3.TabIndex = 2;
             this.label3.Text = "Kategoria";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 228);
+            this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label4.Location = new System.Drawing.Point(10, 238);
+            this.label4.Margin = new System.Windows.Forms.Padding(10);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(76, 13);
+            this.label4.Size = new System.Drawing.Size(200, 56);
             this.label4.TabIndex = 3;
             this.label4.Text = "Ilość dostępna";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(3, 304);
+            this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label5.Location = new System.Drawing.Point(10, 314);
+            this.label5.Margin = new System.Windows.Forms.Padding(10);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(32, 13);
+            this.label5.Size = new System.Drawing.Size(200, 57);
             this.label5.TabIndex = 4;
             this.label5.Text = "Cena";
             // 
             // textBoxName
             // 
-            this.textBoxName.Location = new System.Drawing.Point(223, 3);
+            this.textBoxName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBoxName.Location = new System.Drawing.Point(230, 10);
+            this.textBoxName.Margin = new System.Windows.Forms.Padding(10);
+            this.textBoxName.MaximumSize = new System.Drawing.Size(200, 0);
             this.textBoxName.Name = "textBoxName";
-            this.textBoxName.Size = new System.Drawing.Size(100, 20);
+            this.textBoxName.Size = new System.Drawing.Size(200, 20);
             this.textBoxName.TabIndex = 5;
             // 
             // textBoxModel
             // 
-            this.textBoxModel.Location = new System.Drawing.Point(223, 79);
+            this.textBoxModel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBoxModel.Location = new System.Drawing.Point(230, 86);
+            this.textBoxModel.Margin = new System.Windows.Forms.Padding(10);
+            this.textBoxModel.MaximumSize = new System.Drawing.Size(200, 0);
             this.textBoxModel.Name = "textBoxModel";
-            this.textBoxModel.Size = new System.Drawing.Size(100, 20);
+            this.textBoxModel.Size = new System.Drawing.Size(200, 20);
             this.textBoxModel.TabIndex = 6;
             // 
             // textBoxPrice
             // 
-            this.textBoxPrice.Location = new System.Drawing.Point(223, 307);
+            this.textBoxPrice.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBoxPrice.Location = new System.Drawing.Point(230, 314);
+            this.textBoxPrice.Margin = new System.Windows.Forms.Padding(10);
+            this.textBoxPrice.MaximumSize = new System.Drawing.Size(200, 0);
             this.textBoxPrice.Name = "textBoxPrice";
-            this.textBoxPrice.Size = new System.Drawing.Size(100, 20);
+            this.textBoxPrice.Size = new System.Drawing.Size(200, 20);
             this.textBoxPrice.TabIndex = 7;
             // 
             // textBoxAmount
             // 
-            this.textBoxAmount.Location = new System.Drawing.Point(223, 231);
+            this.textBoxAmount.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBoxAmount.Location = new System.Drawing.Point(230, 238);
+            this.textBoxAmount.Margin = new System.Windows.Forms.Padding(10);
+            this.textBoxAmount.MaximumSize = new System.Drawing.Size(200, 0);
             this.textBoxAmount.Name = "textBoxAmount";
-            this.textBoxAmount.Size = new System.Drawing.Size(100, 20);
+            this.textBoxAmount.Size = new System.Drawing.Size(200, 20);
             this.textBoxAmount.TabIndex = 8;
             // 
             // comboBoxCategory
             // 
+            this.comboBoxCategory.Dock = System.Windows.Forms.DockStyle.Fill;
             this.comboBoxCategory.FormattingEnabled = true;
-            this.comboBoxCategory.Location = new System.Drawing.Point(223, 155);
+            this.comboBoxCategory.Location = new System.Drawing.Point(230, 162);
+            this.comboBoxCategory.Margin = new System.Windows.Forms.Padding(10);
+            this.comboBoxCategory.MaximumSize = new System.Drawing.Size(200, 0);
             this.comboBoxCategory.Name = "comboBoxCategory";
-            this.comboBoxCategory.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxCategory.Size = new System.Drawing.Size(200, 21);
             this.comboBoxCategory.TabIndex = 9;
             // 
             // ProduktyEdycja
