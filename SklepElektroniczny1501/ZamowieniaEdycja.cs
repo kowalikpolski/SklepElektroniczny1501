@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SklepElektroniczny;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,33 +21,42 @@ namespace SklepElektroniczny1501
         private IEnumerable orderList;
         private DataContext dc; 
         private string orderNr;
-        public ZamowieniaEdycja(string order)
+        private Boolean existingOrder;
+        private void refreshList(string orderNr)
         {
-            InitializeComponent();
-            
-            dc = new DataContext("Data Source=localhost\\SQLEXPRESS;Initial Catalog=master;Integrated Security=True");
             Table<produkt> produkt = dc.GetTable<produkt>();
             Table<zamowienie_produkt> zamowienie_produkt = dc.GetTable<zamowienie_produkt>();
             Table<zamowienie> zamowienie = dc.GetTable<zamowienie>();
+            var orderItems = (from zp in zamowienie_produkt
+                              join prod in produkt on zp.id_produkt equals prod.id
+                              join zam in zamowienie on zp.id_zamowienie equals zam.id
+                              where zam.numer_zamowienia == orderNr
+                              select new
+                              {
+                                  zp.id,
+                                  prod.nazwa,
+                                  prod.model,
+                                  zp.ilosc,
+                                  zp.cena,
+                              }).ToList();
+            dataGridView1.DataSource = orderItems;
+            dataGridView1.Columns["id"].Visible = false;
+            labelSum.Text = orderItems.Sum(x => x.cena).ToString();
+        }
+        public ZamowieniaEdycja(string order)
+        {
+            InitializeComponent();
+            orderNr= order;
+            dc = new DataContext("Data Source=localhost\\SQLEXPRESS;Initial Catalog=master;Integrated Security=True");
+            Table<zamowienie> zamowienie = dc.GetTable<zamowienie>();
             if(order != null)
             {
-                var orderItems = (from zp in zamowienie_produkt
-                             join prod in produkt on zp.id_produkt equals prod.id
-                             join zam in zamowienie on zp.id_zamowienie equals zam.id
-                             where zam.numer_zamowienia == order
-                             select new
-                             {
-                                 prod.nazwa,
-                                 prod.model,
-                                 zp.ilosc,
-                                 zp.cena,
-                             }).ToList();
-                dataGridView1.DataSource = orderItems;
-                orderNr = order;
-                labelSum.Text=orderItems.Sum(x=>x.cena).ToString();
+                existingOrder = true;
+                refreshList(orderNr);
             }
             else
             {
+                existingOrder= false;
                 labelSum.Text = "0";
                 var query = (from zam in zamowienie
                               group zam by true into r
@@ -68,32 +78,33 @@ namespace SklepElektroniczny1501
             labelOrder.Text = orderNr;
 
 
-            /*SELECT        produkt.nazwa, produkt.model, zamowienie_produkt.ilosc, zamowienie_produkt.cena
-FROM            zamowienie_produkt INNER JOIN
-                         produkt ON zamowienie_produkt.id_produkt = produkt.id*/
         }
 
         private void nowaPozycjaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           
-                
-               
-                Form zamowieniePozycjeEdycja = new ZamowieniePozycjeEdycja(null,null);
+            Table<zamowienie> zamowienie = dc.GetTable<zamowienie>();
+            if (!existingOrder)
+                pushNewOrderToDatabase();
+            var query=zamowienie.Single(x=>x.numer_zamowienia == orderNr);
+                Form zamowieniePozycjeEdycja = new ZamowieniePozycjeEdycja(0, query.id);
                 zamowieniePozycjeEdycja.ShowDialog();
-                this.Close();
-            
+            refreshList(orderNr);
+
         }
 
         private void edytujToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedCells != null)
             {
+                Table<zamowienie> zamowienie = dc.GetTable<zamowienie>();
+                var query = zamowienie.Single(x => x.numer_zamowienia == orderNr);
+                Table<zamowienie_produkt> zamowienie_produkt = dc.GetTable<zamowienie_produkt>();
                 var selectedItem = dataGridView1.SelectedCells[0].RowIndex;
                 var name = dataGridView1.Rows[selectedItem].Cells[0].Value.ToString();
-                var model = dataGridView1.Rows[selectedItem].Cells[1].Value.ToString();
-                Form zamowieniePozycjeEdycja = new ZamowieniePozycjeEdycja(name, model);
+                var zProdukt = zamowienie_produkt.Single(x => x.id == (int)dataGridView1.Rows[selectedItem].Cells[0].Value);
+                Form zamowieniePozycjeEdycja = new ZamowieniePozycjeEdycja(zProdukt.id,query.id);
                 zamowieniePozycjeEdycja.ShowDialog();
-                this.Close();
+                refreshList(orderNr);
             }
         }
 
@@ -101,12 +112,15 @@ FROM            zamowienie_produkt INNER JOIN
         {
             if (dataGridView1.SelectedCells != null)
             {
+                Table<zamowienie> zamowienie = dc.GetTable<zamowienie>();
+                var query = zamowienie.Single(x => x.numer_zamowienia == orderNr);
+                Table<zamowienie_produkt> zamowienie_produkt = dc.GetTable<zamowienie_produkt>();
                 var selectedItem = dataGridView1.SelectedCells[0].RowIndex;
                 var name = dataGridView1.Rows[selectedItem].Cells[0].Value.ToString();
-                var model = dataGridView1.Rows[selectedItem].Cells[1].Value.ToString();
-                Form zamowieniePozycjeEdycja = new ZamowieniePozycjeEdycja(name, model);
+                var zProdukt = zamowienie_produkt.Single(x => x.id == (int)dataGridView1.Rows[selectedItem].Cells[0].Value);
+                Form zamowieniePozycjeEdycja = new ZamowieniePozycjeEdycja(zProdukt.id, query.id);
                 zamowieniePozycjeEdycja.ShowDialog();
-                this.Close();
+                refreshList(orderNr);
             }
         }
 
@@ -116,6 +130,32 @@ FROM            zamowienie_produkt INNER JOIN
                 edytujToolStripMenuItem.Enabled = false;
             else
                 edytujToolStripMenuItem.Enabled = true;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if(!existingOrder)
+                pushNewOrderToDatabase();
+            Form zamowienia = new Zamowienia();
+            zamowienia.Show();
+            this.Close();
+        }
+        private void pushNewOrderToDatabase()
+        {
+            Table<zamowienie> zamowienie = dc.GetTable<zamowienie>();
+            var query1 = (from zam in zamowienie
+                          group zam by true into r
+                          select new { maxId = r.Max(x => x.id) }).ToList()[0];
+            var myOrder = new zamowienie()
+            {
+                id = query1.maxId+1,
+                numer_zamowienia = orderNr,
+                data_zamowienia = DateTime.Now,
+            };
+            zamowienie.InsertOnSubmit(myOrder);
+            dc.SubmitChanges();
+            existingOrder = true;
+            
         }
     }
 }

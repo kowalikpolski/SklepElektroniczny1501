@@ -47,6 +47,7 @@
             this.button1.TabIndex = 2;
             this.button1.Text = "Zapisz";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -124,6 +125,7 @@
             this.textBoxAmount.Name = "textBoxAmount";
             this.textBoxAmount.Size = new System.Drawing.Size(300, 22);
             this.textBoxAmount.TabIndex = 6;
+            this.textBoxAmount.TextChanged += new System.EventHandler(this.textBoxAmount_TextChanged);
             // 
             // comboBoxProdukt
             // 
@@ -136,6 +138,7 @@
             this.comboBoxProdukt.Name = "comboBoxProdukt";
             this.comboBoxProdukt.Size = new System.Drawing.Size(300, 21);
             this.comboBoxProdukt.TabIndex = 8;
+            this.comboBoxProdukt.SelectedIndexChanged += new System.EventHandler(this.comboBoxProdukt_SelectedIndexChanged);
             // 
             // ZamowieniePozycjeEdycja
             // 

@@ -67,7 +67,7 @@ namespace SklepElektroniczny1501
                 if (textBoxName.Text.Length == 0) { throw new ArgumentNullException(); }
                 if (textBoxAmount.Text.Length == 0) { throw new ArgumentNullException(); }
                 if (textBoxPrice.Text.Length == 0) { throw new ArgumentNullException(); }
-                if (comboBoxCategory.SelectedIndex == -1) { throw new ArgumentOutOfRangeException(); }
+                if (comboBoxCategory.SelectedIndex == -1) { throw new IndexOutOfRangeException(); }
                 if (!int.TryParse(textBoxAmount.Text,out int amount)){ throw new ArgumentException(); }
                 if (!decimal.TryParse(textBoxPrice.Text, out decimal price)){ throw new ArgumentException(); }
                 if (amount < 0) { throw new ArgumentException(); }
@@ -119,7 +119,7 @@ namespace SklepElektroniczny1501
                 produkty.Show();
                 this.Close();
             }
-            catch (ArgumentOutOfRangeException ex)
+            catch (IndexOutOfRangeException ex)
             {
                 MessageBox.Show("Wybierz kategorię");
             }
