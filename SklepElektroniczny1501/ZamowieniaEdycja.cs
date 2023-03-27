@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Data.Linq;
 using System.Drawing;
@@ -12,7 +13,6 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
 namespace SklepElektroniczny1501
 {
     
@@ -47,7 +47,8 @@ namespace SklepElektroniczny1501
         {
             InitializeComponent();
             orderNr= order;
-            dc = new DataContext("Data Source=localhost\\SQLEXPRESS;Initial Catalog=master;Integrated Security=True");
+            
+            dc = new DataContext(ConfigurationManager.ConnectionStrings["SklepElektroniczny1501.Properties.Settings.masterConnectionString"].ToString());
             Table<zamowienie> zamowienie = dc.GetTable<zamowienie>();
             if(order != null)
             {
@@ -58,10 +59,10 @@ namespace SklepElektroniczny1501
             {
                 existingOrder= false;
                 labelSum.Text = "0";
-                var query = (from zam in zamowienie
+                var maxOrderNumber = (from zam in zamowienie
                               group zam by true into r
                               select new { maxOrder = r.Max(x => x.numer_zamowienia) }).ToList()[0];
-                var str=query.maxOrder.Split('/');
+                var str=maxOrderNumber.maxOrder.Split('/');
                 if (str[0] == DateTime.Now.Year.ToString())
                 {
                     str[1] = String.Format("{0:000}", int.Parse(str[1]) + 1);
@@ -85,8 +86,8 @@ namespace SklepElektroniczny1501
             Table<zamowienie> zamowienie = dc.GetTable<zamowienie>();
             if (!existingOrder)
                 pushNewOrderToDatabase();
-            var query=zamowienie.Single(x=>x.numer_zamowienia == orderNr);
-                Form zamowieniePozycjeEdycja = new ZamowieniePozycjeEdycja(0, query.id);
+            var zam=zamowienie.Single(x=>x.numer_zamowienia == orderNr);
+                Form zamowieniePozycjeEdycja = new ZamowieniePozycjeEdycja(0, zam.id);
                 zamowieniePozycjeEdycja.ShowDialog();
             refreshList(orderNr);
 
@@ -94,34 +95,12 @@ namespace SklepElektroniczny1501
 
         private void edytujToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.SelectedCells != null)
-            {
-                Table<zamowienie> zamowienie = dc.GetTable<zamowienie>();
-                var query = zamowienie.Single(x => x.numer_zamowienia == orderNr);
-                Table<zamowienie_produkt> zamowienie_produkt = dc.GetTable<zamowienie_produkt>();
-                var selectedItem = dataGridView1.SelectedCells[0].RowIndex;
-                var name = dataGridView1.Rows[selectedItem].Cells[0].Value.ToString();
-                var zProdukt = zamowienie_produkt.Single(x => x.id == (int)dataGridView1.Rows[selectedItem].Cells[0].Value);
-                Form zamowieniePozycjeEdycja = new ZamowieniePozycjeEdycja(zProdukt.id,query.id);
-                zamowieniePozycjeEdycja.ShowDialog();
-                refreshList(orderNr);
-            }
+                editSelectedItem();
         }
 
         private void dataGridView1_DoubleClick(object sender, EventArgs e)
         {
-            if (dataGridView1.SelectedCells != null)
-            {
-                Table<zamowienie> zamowienie = dc.GetTable<zamowienie>();
-                var query = zamowienie.Single(x => x.numer_zamowienia == orderNr);
-                Table<zamowienie_produkt> zamowienie_produkt = dc.GetTable<zamowienie_produkt>();
-                var selectedItem = dataGridView1.SelectedCells[0].RowIndex;
-                var name = dataGridView1.Rows[selectedItem].Cells[0].Value.ToString();
-                var zProdukt = zamowienie_produkt.Single(x => x.id == (int)dataGridView1.Rows[selectedItem].Cells[0].Value);
-                Form zamowieniePozycjeEdycja = new ZamowieniePozycjeEdycja(zProdukt.id, query.id);
-                zamowieniePozycjeEdycja.ShowDialog();
-                refreshList(orderNr);
-            }
+            editSelectedItem();
         }
 
         private void dataGridView1_CurrentCellChanged(object sender, EventArgs e)
@@ -143,12 +122,8 @@ namespace SklepElektroniczny1501
         private void pushNewOrderToDatabase()
         {
             Table<zamowienie> zamowienie = dc.GetTable<zamowienie>();
-            var query1 = (from zam in zamowienie
-                          group zam by true into r
-                          select new { maxId = r.Max(x => x.id) }).ToList()[0];
             var myOrder = new zamowienie()
             {
-                id = query1.maxId+1,
                 numer_zamowienia = orderNr,
                 data_zamowienia = DateTime.Now,
             };
@@ -156,6 +131,21 @@ namespace SklepElektroniczny1501
             dc.SubmitChanges();
             existingOrder = true;
             
+        }
+        private void editSelectedItem()
+        {
+            if (dataGridView1.SelectedCells != null)
+            {
+                Table<zamowienie> zamowienie = dc.GetTable<zamowienie>();
+                var zam = zamowienie.Single(x => x.numer_zamowienia == orderNr);
+                Table<zamowienie_produkt> zamowienie_produkt = dc.GetTable<zamowienie_produkt>();
+                var selectedItem = dataGridView1.SelectedCells[0].RowIndex;
+                var name = dataGridView1.Rows[selectedItem].Cells[0].Value.ToString();
+                var zProdukt = zamowienie_produkt.Single(x => x.id == (int)dataGridView1.Rows[selectedItem].Cells[0].Value);
+                Form zamowieniePozycjeEdycja = new ZamowieniePozycjeEdycja(zProdukt.id, zam.id);
+                zamowieniePozycjeEdycja.ShowDialog();
+                refreshList(orderNr);
+            }
         }
     }
 }
