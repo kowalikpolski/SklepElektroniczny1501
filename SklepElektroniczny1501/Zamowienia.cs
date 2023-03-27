@@ -33,17 +33,22 @@ namespace SklepElektroniczny
 
         private void edytujToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.SelectedCells != null)
-            {
-                var selectedItem = dataGridView1.SelectedCells[0].RowIndex;
-                var order= dataGridView1.Rows[selectedItem].Cells[0].Value.ToString();
-                Form zamowienie = new ZamowieniaEdycja(order);
-                zamowienie.Show();
-                this.Close();
-            }
+            editSelectedOrder();
         }
 
         private void dataGridView1_DoubleClick(object sender, EventArgs e)
+        {
+            editSelectedOrder();
+        }
+
+        private void dataGridView1_CurrentCellChanged(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedCells == null)
+                edytujToolStripMenuItem.Enabled = false;
+            else
+                edytujToolStripMenuItem.Enabled = true;
+        }
+        private void editSelectedOrder()
         {
             if (dataGridView1.SelectedCells != null)
             {
@@ -53,14 +58,6 @@ namespace SklepElektroniczny
                 zamowienie.Show();
                 this.Close();
             }
-        }
-
-        private void dataGridView1_CurrentCellChanged(object sender, EventArgs e)
-        {
-            if (dataGridView1.SelectedCells == null)
-                edytujToolStripMenuItem.Enabled = false;
-            else
-                edytujToolStripMenuItem.Enabled = true;
         }
     }
 }
