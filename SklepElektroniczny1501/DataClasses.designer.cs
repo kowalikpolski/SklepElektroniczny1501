@@ -22,7 +22,7 @@ namespace SklepElektroniczny1501
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="master")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="sklep_elektroniczny")]
 	public partial class DataClassesDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -30,18 +30,18 @@ namespace SklepElektroniczny1501
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void Insertprodukt(produkt instance);
-    partial void Updateprodukt(produkt instance);
-    partial void Deleteprodukt(produkt instance);
-    partial void Insertzamowienie(zamowienie instance);
-    partial void Updatezamowienie(zamowienie instance);
-    partial void Deletezamowienie(zamowienie instance);
     partial void Insertkategoria(kategoria instance);
     partial void Updatekategoria(kategoria instance);
     partial void Deletekategoria(kategoria instance);
+    partial void Insertprodukt(produkt instance);
+    partial void Updateprodukt(produkt instance);
+    partial void Deleteprodukt(produkt instance);
     partial void Insertprodukt_kategoria(produkt_kategoria instance);
     partial void Updateprodukt_kategoria(produkt_kategoria instance);
     partial void Deleteprodukt_kategoria(produkt_kategoria instance);
+    partial void Insertzamowienie(zamowienie instance);
+    partial void Updatezamowienie(zamowienie instance);
+    partial void Deletezamowienie(zamowienie instance);
     partial void Insertzamowienie_produkt(zamowienie_produkt instance);
     partial void Updatezamowienie_produkt(zamowienie_produkt instance);
     partial void Deletezamowienie_produkt(zamowienie_produkt instance);
@@ -77,27 +77,19 @@ namespace SklepElektroniczny1501
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<produkt> produkts
-		{
-			get
-			{
-				return this.GetTable<produkt>();
-			}
-		}
-		
-		public System.Data.Linq.Table<zamowienie> zamowienies
-		{
-			get
-			{
-				return this.GetTable<zamowienie>();
-			}
-		}
-		
 		public System.Data.Linq.Table<kategoria> kategorias
 		{
 			get
 			{
 				return this.GetTable<kategoria>();
+			}
+		}
+		
+		public System.Data.Linq.Table<produkt> produkts
+		{
+			get
+			{
+				return this.GetTable<produkt>();
 			}
 		}
 		
@@ -109,12 +101,134 @@ namespace SklepElektroniczny1501
 			}
 		}
 		
+		public System.Data.Linq.Table<zamowienie> zamowienies
+		{
+			get
+			{
+				return this.GetTable<zamowienie>();
+			}
+		}
+		
 		public System.Data.Linq.Table<zamowienie_produkt> zamowienie_produkts
 		{
 			get
 			{
 				return this.GetTable<zamowienie_produkt>();
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.kategoria")]
+	public partial class kategoria : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private string _kategoria1;
+		
+		private EntitySet<produkt_kategoria> _produkt_kategorias;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void Onkategoria1Changing(string value);
+    partial void Onkategoria1Changed();
+    #endregion
+		
+		public kategoria()
+		{
+			this._produkt_kategorias = new EntitySet<produkt_kategoria>(new Action<produkt_kategoria>(this.attach_produkt_kategorias), new Action<produkt_kategoria>(this.detach_produkt_kategorias));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="kategoria", Storage="_kategoria1", DbType="VarChar(30) NOT NULL", CanBeNull=false)]
+		public string kategoria1
+		{
+			get
+			{
+				return this._kategoria1;
+			}
+			set
+			{
+				if ((this._kategoria1 != value))
+				{
+					this.Onkategoria1Changing(value);
+					this.SendPropertyChanging();
+					this._kategoria1 = value;
+					this.SendPropertyChanged("kategoria1");
+					this.Onkategoria1Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="kategoria_produkt_kategoria", Storage="_produkt_kategorias", ThisKey="id", OtherKey="id_kategoria")]
+		public EntitySet<produkt_kategoria> produkt_kategorias
+		{
+			get
+			{
+				return this._produkt_kategorias;
+			}
+			set
+			{
+				this._produkt_kategorias.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_produkt_kategorias(produkt_kategoria entity)
+		{
+			this.SendPropertyChanging();
+			entity.kategoria = this;
+		}
+		
+		private void detach_produkt_kategorias(produkt_kategoria entity)
+		{
+			this.SendPropertyChanging();
+			entity.kategoria = null;
 		}
 	}
 	
@@ -165,7 +279,7 @@ namespace SklepElektroniczny1501
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int id
 		{
 			get
@@ -265,7 +379,7 @@ namespace SklepElektroniczny1501
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cena", DbType="Money NOT NULL")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cena", DbType="Decimal(18,0) NOT NULL")]
 		public decimal cena
 		{
 			get
@@ -356,258 +470,6 @@ namespace SklepElektroniczny1501
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.zamowienie")]
-	public partial class zamowienie : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _id;
-		
-		private string _numer_zamowienia;
-		
-		private System.DateTime _data_zamowienia;
-		
-		private EntitySet<zamowienie_produkt> _zamowienie_produkts;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidChanging(int value);
-    partial void OnidChanged();
-    partial void Onnumer_zamowieniaChanging(string value);
-    partial void Onnumer_zamowieniaChanged();
-    partial void Ondata_zamowieniaChanging(System.DateTime value);
-    partial void Ondata_zamowieniaChanged();
-    #endregion
-		
-		public zamowienie()
-		{
-			this._zamowienie_produkts = new EntitySet<zamowienie_produkt>(new Action<zamowienie_produkt>(this.attach_zamowienie_produkts), new Action<zamowienie_produkt>(this.detach_zamowienie_produkts));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int id
-		{
-			get
-			{
-				return this._id;
-			}
-			set
-			{
-				if ((this._id != value))
-				{
-					this.OnidChanging(value);
-					this.SendPropertyChanging();
-					this._id = value;
-					this.SendPropertyChanged("id");
-					this.OnidChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_numer_zamowienia", DbType="Char(8) NOT NULL", CanBeNull=false)]
-		public string numer_zamowienia
-		{
-			get
-			{
-				return this._numer_zamowienia;
-			}
-			set
-			{
-				if ((this._numer_zamowienia != value))
-				{
-					this.Onnumer_zamowieniaChanging(value);
-					this.SendPropertyChanging();
-					this._numer_zamowienia = value;
-					this.SendPropertyChanged("numer_zamowienia");
-					this.Onnumer_zamowieniaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_data_zamowienia", DbType="Date NOT NULL")]
-		public System.DateTime data_zamowienia
-		{
-			get
-			{
-				return this._data_zamowienia;
-			}
-			set
-			{
-				if ((this._data_zamowienia != value))
-				{
-					this.Ondata_zamowieniaChanging(value);
-					this.SendPropertyChanging();
-					this._data_zamowienia = value;
-					this.SendPropertyChanged("data_zamowienia");
-					this.Ondata_zamowieniaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="zamowienie_zamowienie_produkt", Storage="_zamowienie_produkts", ThisKey="id", OtherKey="id_zamowienie")]
-		public EntitySet<zamowienie_produkt> zamowienie_produkts
-		{
-			get
-			{
-				return this._zamowienie_produkts;
-			}
-			set
-			{
-				this._zamowienie_produkts.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_zamowienie_produkts(zamowienie_produkt entity)
-		{
-			this.SendPropertyChanging();
-			entity.zamowienie = this;
-		}
-		
-		private void detach_zamowienie_produkts(zamowienie_produkt entity)
-		{
-			this.SendPropertyChanging();
-			entity.zamowienie = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.kategoria")]
-	public partial class kategoria : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _id;
-		
-		private string _kategoria1;
-		
-		private EntitySet<produkt_kategoria> _produkt_kategorias;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidChanging(int value);
-    partial void OnidChanged();
-    partial void Onkategoria1Changing(string value);
-    partial void Onkategoria1Changed();
-    #endregion
-		
-		public kategoria()
-		{
-			this._produkt_kategorias = new EntitySet<produkt_kategoria>(new Action<produkt_kategoria>(this.attach_produkt_kategorias), new Action<produkt_kategoria>(this.detach_produkt_kategorias));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int id
-		{
-			get
-			{
-				return this._id;
-			}
-			set
-			{
-				if ((this._id != value))
-				{
-					this.OnidChanging(value);
-					this.SendPropertyChanging();
-					this._id = value;
-					this.SendPropertyChanged("id");
-					this.OnidChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="kategoria", Storage="_kategoria1", DbType="VarChar(30) NOT NULL", CanBeNull=false)]
-		public string kategoria1
-		{
-			get
-			{
-				return this._kategoria1;
-			}
-			set
-			{
-				if ((this._kategoria1 != value))
-				{
-					this.Onkategoria1Changing(value);
-					this.SendPropertyChanging();
-					this._kategoria1 = value;
-					this.SendPropertyChanged("kategoria1");
-					this.Onkategoria1Changed();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="kategoria_produkt_kategoria", Storage="_produkt_kategorias", ThisKey="id", OtherKey="id_kategoria")]
-		public EntitySet<produkt_kategoria> produkt_kategorias
-		{
-			get
-			{
-				return this._produkt_kategorias;
-			}
-			set
-			{
-				this._produkt_kategorias.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_produkt_kategorias(produkt_kategoria entity)
-		{
-			this.SendPropertyChanging();
-			entity.kategoria = this;
-		}
-		
-		private void detach_produkt_kategorias(produkt_kategoria entity)
-		{
-			this.SendPropertyChanging();
-			entity.kategoria = null;
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.produkt_kategoria")]
 	public partial class produkt_kategoria : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -643,7 +505,7 @@ namespace SklepElektroniczny1501
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int id
 		{
 			get
@@ -800,6 +662,144 @@ namespace SklepElektroniczny1501
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.zamowienie")]
+	public partial class zamowienie : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private string _numer_zamowienia;
+		
+		private System.DateTime _data_zamowienia;
+		
+		private EntitySet<zamowienie_produkt> _zamowienie_produkts;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void Onnumer_zamowieniaChanging(string value);
+    partial void Onnumer_zamowieniaChanged();
+    partial void Ondata_zamowieniaChanging(System.DateTime value);
+    partial void Ondata_zamowieniaChanged();
+    #endregion
+		
+		public zamowienie()
+		{
+			this._zamowienie_produkts = new EntitySet<zamowienie_produkt>(new Action<zamowienie_produkt>(this.attach_zamowienie_produkts), new Action<zamowienie_produkt>(this.detach_zamowienie_produkts));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_numer_zamowienia", DbType="Char(8) NOT NULL", CanBeNull=false)]
+		public string numer_zamowienia
+		{
+			get
+			{
+				return this._numer_zamowienia;
+			}
+			set
+			{
+				if ((this._numer_zamowienia != value))
+				{
+					this.Onnumer_zamowieniaChanging(value);
+					this.SendPropertyChanging();
+					this._numer_zamowienia = value;
+					this.SendPropertyChanged("numer_zamowienia");
+					this.Onnumer_zamowieniaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_data_zamowienia", DbType="Date NOT NULL")]
+		public System.DateTime data_zamowienia
+		{
+			get
+			{
+				return this._data_zamowienia;
+			}
+			set
+			{
+				if ((this._data_zamowienia != value))
+				{
+					this.Ondata_zamowieniaChanging(value);
+					this.SendPropertyChanging();
+					this._data_zamowienia = value;
+					this.SendPropertyChanged("data_zamowienia");
+					this.Ondata_zamowieniaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="zamowienie_zamowienie_produkt", Storage="_zamowienie_produkts", ThisKey="id", OtherKey="id_zamowienie")]
+		public EntitySet<zamowienie_produkt> zamowienie_produkts
+		{
+			get
+			{
+				return this._zamowienie_produkts;
+			}
+			set
+			{
+				this._zamowienie_produkts.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_zamowienie_produkts(zamowienie_produkt entity)
+		{
+			this.SendPropertyChanging();
+			entity.zamowienie = this;
+		}
+		
+		private void detach_zamowienie_produkts(zamowienie_produkt entity)
+		{
+			this.SendPropertyChanging();
+			entity.zamowienie = null;
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.zamowienie_produkt")]
 	public partial class zamowienie_produkt : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -843,7 +843,7 @@ namespace SklepElektroniczny1501
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int id
 		{
 			get

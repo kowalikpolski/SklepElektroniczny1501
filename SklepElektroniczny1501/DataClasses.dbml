@@ -1,44 +1,44 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="master" Class="DataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=localhost\SQLEXPRESS;Initial Catalog=master;Integrated Security=True" SettingsObjectName="SklepElektroniczny1501.Properties.Settings" SettingsPropertyName="masterConnectionString" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.produkt" Member="produkts">
-    <Type Name="produkt">
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="nazwa" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
-      <Column Name="model" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
-      <Column Name="opis" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="ilosc_dostepna" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="cena" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
-      <Association Name="produkt_produkt_kategoria" Member="produkt_kategorias" ThisKey="id" OtherKey="id_produkt" Type="produkt_kategoria" />
-      <Association Name="produkt_zamowienie_produkt" Member="zamowienie_produkts" ThisKey="id" OtherKey="id_produkt" Type="zamowienie_produkt" />
-    </Type>
-  </Table>
-  <Table Name="dbo.zamowienie" Member="zamowienies">
-    <Type Name="zamowienie">
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="numer_zamowienia" Type="System.String" DbType="Char(8) NOT NULL" CanBeNull="false" />
-      <Column Name="data_zamowienia" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
-      <Association Name="zamowienie_zamowienie_produkt" Member="zamowienie_produkts" ThisKey="id" OtherKey="id_zamowienie" Type="zamowienie_produkt" />
-    </Type>
-  </Table>
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="sklep_elektroniczny" Class="DataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=MICHAL-LAPTOP\SQLEXPRESS;Initial Catalog=sklep_elektroniczny;Integrated Security=True" SettingsObjectName="SklepElektroniczny1501.Properties.Settings" SettingsPropertyName="masterConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.kategoria" Member="kategorias">
     <Type Name="kategoria">
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="kategoria" Member="kategoria1" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
       <Association Name="kategoria_produkt_kategoria" Member="produkt_kategorias" ThisKey="id" OtherKey="id_kategoria" Type="produkt_kategoria" />
     </Type>
   </Table>
+  <Table Name="dbo.produkt" Member="produkts">
+    <Type Name="produkt">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="nazwa" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="model" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="opis" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="ilosc_dostepna" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="cena" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Association Name="produkt_produkt_kategoria" Member="produkt_kategorias" ThisKey="id" OtherKey="id_produkt" Type="produkt_kategoria" />
+      <Association Name="produkt_zamowienie_produkt" Member="zamowienie_produkts" ThisKey="id" OtherKey="id_produkt" Type="zamowienie_produkt" />
+    </Type>
+  </Table>
   <Table Name="dbo.produkt_kategoria" Member="produkt_kategorias">
     <Type Name="produkt_kategoria">
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="id_produkt" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="id_kategoria" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="kategoria_produkt_kategoria" Member="kategoria" ThisKey="id_kategoria" OtherKey="id" Type="kategoria" IsForeignKey="true" />
       <Association Name="produkt_produkt_kategoria" Member="produkt" ThisKey="id_produkt" OtherKey="id" Type="produkt" IsForeignKey="true" />
     </Type>
   </Table>
+  <Table Name="dbo.zamowienie" Member="zamowienies">
+    <Type Name="zamowienie">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="numer_zamowienia" Type="System.String" DbType="Char(8) NOT NULL" CanBeNull="false" />
+      <Column Name="data_zamowienia" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Association Name="zamowienie_zamowienie_produkt" Member="zamowienie_produkts" ThisKey="id" OtherKey="id_zamowienie" Type="zamowienie_produkt" />
+    </Type>
+  </Table>
   <Table Name="dbo.zamowienie_produkt" Member="zamowienie_produkts">
     <Type Name="zamowienie_produkt">
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="id_produkt" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="id_zamowienie" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="ilosc" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
