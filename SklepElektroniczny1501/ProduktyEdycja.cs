@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Data.Linq;
 using System.Drawing;
@@ -19,7 +20,7 @@ namespace SklepElektroniczny1501
         public ProduktyEdycja(string name, string model)
         {
             InitializeComponent();
-            dc = new DataContext("Data Source=localhost\\SQLEXPRESS;Initial Catalog=master;Integrated Security=True");
+            dc = new DataContext(ConfigurationManager.ConnectionStrings["SklepElektroniczny1501.Properties.Settings.masterConnectionString"].ToString());
             Table<produkt_kategoria> produkt_kategoria = dc.GetTable<produkt_kategoria>();
             Table<produkt> produkt = dc.GetTable<produkt>();
             Table<kategoria> kategoria = dc.GetTable<kategoria>();
@@ -32,7 +33,7 @@ namespace SklepElektroniczny1501
             }
             else
             {
-                var query= (from pk in produkt_kategoria
+                var editedProduct= (from pk in produkt_kategoria
                             join prod in produkt on pk.id_produkt equals prod.id
                             join kat in kategoria on pk.id_kategoria equals kat.id
                             where prod.nazwa==name 
@@ -45,12 +46,12 @@ namespace SklepElektroniczny1501
                                 prod.ilosc_dostepna,
                                 kat.kategoria1,
                 }).ToList()[0];
-                prodId = query.id;
-                textBoxName.Text = query.nazwa;
-                textBoxModel.Text = query.model;
-                textBoxPrice.Text = query.cena.ToString();
-                textBoxAmount.Text = query.ilosc_dostepna.ToString();
-                comboBoxCategory.SelectedItem = query.kategoria1;
+                prodId = editedProduct.id;
+                textBoxName.Text = editedProduct.nazwa;
+                textBoxModel.Text = editedProduct.model;
+                textBoxPrice.Text = editedProduct.cena.ToString();
+                textBoxAmount.Text = editedProduct.ilosc_dostepna.ToString();
+                comboBoxCategory.SelectedItem = editedProduct.kategoria1;
             }
 
            
@@ -72,33 +73,28 @@ namespace SklepElektroniczny1501
                 if (!decimal.TryParse(textBoxPrice.Text, out decimal price)){ throw new ArgumentException(); }
                 if (amount < 0) { throw new ArgumentException(); }
                 if (price < 0) { throw new ArgumentException(); }
-                var query3 = kategoria.Single(x => x.kategoria1 == kategorie[comboBoxCategory.SelectedIndex]);
+                var selectedCategory = kategoria.Single(x => x.kategoria1 == kategorie[comboBoxCategory.SelectedIndex]);
                 if (prodId==-1)
                 {
                     //insertintotable
-                    var query1 = (from prod in produkt
-                                  group prod by true into r
-                                  select new { maxId = r.Max(x => x.id) }).ToList()[0];
-                    var query2 = (from pk in produkt_kategoria
-                                  group pk by true into r
-                                  select new { maxId = r.Max(x => x.id) }).ToList()[0];
+
                     var myProdukt = new produkt()
                     {
-                        id = query1.maxId + 1,
                         nazwa = textBoxName.Text,
                         model = textBoxModel.Text,
                         opis = null,
                         ilosc_dostepna = amount,
                         cena = price,
                     };
-
+                    produkt.InsertOnSubmit(myProdukt);
+                    dc.SubmitChanges();
                     var myProduktKategoria = new produkt_kategoria()
                     {
-                        id = query2.maxId + 1,
-                        id_produkt = query1.maxId + 1,
-                        id_kategoria = query3.id,
+                        
+                        id_produkt = myProdukt.id,
+                        id_kategoria = selectedCategory.id,
                     };
-                    produkt.InsertOnSubmit(myProdukt);
+                    
                     produkt_kategoria.InsertOnSubmit(myProduktKategoria);
 
                 }
@@ -111,7 +107,7 @@ namespace SklepElektroniczny1501
                     prod.ilosc_dostepna =amount;
                     prod.cena = price;
                     var pk = produkt_kategoria.Single(x => x.id_produkt == prodId);
-                    pk.id_kategoria = query3.id;
+                    pk.id_kategoria = selectedCategory.id;
                 }
 
                 dc.SubmitChanges();
