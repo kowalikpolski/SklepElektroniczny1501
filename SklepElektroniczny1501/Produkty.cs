@@ -25,18 +25,10 @@ namespace SklepElektroniczny1501
             this.produktTableAdapter.Fill(this.dataSetProdukty.produkt);
 
         }
-
+        
         private void dataGridView1_DoubleClick(object sender, EventArgs e)
         {
-            if (dataGridView1.SelectedCells != null)
-            {
-                var selectedItem = dataGridView1.SelectedCells[0].RowIndex;
-                var name = dataGridView1.Rows[selectedItem].Cells[0].Value.ToString();
-                var model = dataGridView1.Rows[selectedItem].Cells[1].Value.ToString();
-                Form produkt = new ProduktyEdycja(name,model);
-                produkt.Show();
-                this.Close();
-            }
+            editSelectedProduct();
            
         }
 
@@ -56,6 +48,10 @@ namespace SklepElektroniczny1501
         }
 
         private void edytujToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            editSelectedProduct();
+        }
+        private void editSelectedProduct()
         {
             if (dataGridView1.SelectedCells != null)
             {
