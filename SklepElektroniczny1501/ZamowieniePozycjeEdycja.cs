@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Data.Linq;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,10 +23,10 @@ namespace SklepElektroniczny1501
         {
             zProdukt=new zamowienie_produkt();
             InitializeComponent();
-            dc = new DataContext("Data Source=localhost\\SQLEXPRESS;Initial Catalog=master;Integrated Security=True");
+            dc = new DataContext(ConfigurationManager.ConnectionStrings["SklepElektroniczny1501.Properties.Settings.masterConnectionString"].ToString());
             Table<zamowienie_produkt> zamowienie_produkt = dc.GetTable<zamowienie_produkt>();
             Table<produkt> produkt = dc.GetTable<produkt>();
-            var query = (from prod in produkt
+            var productList = (from prod in produkt
                          select new
                          {
                              prod.id,
@@ -35,7 +37,7 @@ namespace SklepElektroniczny1501
                          }).ToArray();
             List<string> produkty=new List<string>();
             
-            foreach (var x in query )
+            foreach (var x in productList )
             {
                 produkty.Add( x.nazwa+"; "+x.model+"; Cena: "+x.cena+" Dostępne: "+x.ilosc_dostepna);
             }
@@ -48,8 +50,8 @@ namespace SklepElektroniczny1501
                 isNewPos = false;
                 labelPrice.Text = zProdukt.cena.ToString();
                 textBoxAmount.Text = zProdukt.ilosc.ToString();
-                var query2 = produkt.Single(x => x.id == zProdukt.id_produkt);
-                comboBoxProdukt.SelectedItem = query2.nazwa + "; " + query2.model + "; Cena: " + query2.cena + " Dostępne: " + query2.ilosc_dostepna;
+                var selectedProduct = produkt.Single(x => x.id == zProdukt.id_produkt);
+                comboBoxProdukt.SelectedItem = selectedProduct.nazwa + "; " + selectedProduct.model + "; Cena: " + selectedProduct.cena + " Dostępne: " + selectedProduct.ilosc_dostepna;
             }
             else
                 isNewPos = true;
@@ -60,24 +62,16 @@ namespace SklepElektroniczny1501
 
         private void textBoxAmount_TextChanged(object sender, EventArgs e)
         {
-            try
-            {
-                if (comboBoxProdukt.SelectedItem != null)
-                {
-                    if (textBoxAmount.Text != "")
-                    {
-                        Table<produkt> produkt = dc.GetTable<produkt>();
-                        var str = comboBoxProdukt.SelectedItem.ToString().Split(';');
-                        var query = produkt.Single(x => x.nazwa.Trim() == str[0].Trim() && x.model.Trim() == str[1].Trim());
-                        labelPrice.Text = (query.cena * int.Parse(textBoxAmount.Text)).ToString();
-                    }
-                }
-            }
-            catch(Exception ex) { }
-            
+            recalculatePrice();
+
         }
 
         private void comboBoxProdukt_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            recalculatePrice();
+            
+        }
+        private void recalculatePrice()
         {
             try
             {
@@ -87,14 +81,12 @@ namespace SklepElektroniczny1501
                     {
                         Table<produkt> produkt = dc.GetTable<produkt>();
                         var str = comboBoxProdukt.SelectedItem.ToString().Split(';');
-                        var query = produkt.Single(x => x.nazwa.Trim() == str[0].Trim() && x.model.Trim() == str[1].Trim());
-                        labelPrice.Text = (query.cena * int.Parse(textBoxAmount.Text)).ToString();
+                        var prod = produkt.Single(x => x.nazwa.Trim() == str[0].Trim() && x.model.Trim() == str[1].Trim());
+                        labelPrice.Text = (prod.cena * int.Parse(textBoxAmount.Text)).ToString();
                     }
                 }
             }
-            catch(Exception ex) { }
-            
-
+            catch (Exception ex) { }
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -107,16 +99,13 @@ namespace SklepElektroniczny1501
                 if (!int.TryParse(textBoxAmount.Text, out int amount)) { throw new ArgumentException(); }
                 if (amount < 0) { throw new ArgumentException(); }
                 
-                var query1 = (from zp in zamowienie_produkt
-                              group zp by true into r
-                              select new { maxId = r.Max(x => x.id) }).ToList()[0];
                 var str = comboBoxProdukt.SelectedItem.ToString().Split(';');
                 var prod = produkt.Single(x => x.nazwa.Trim() == str[0].Trim() && x.model.Trim() == str[1].Trim());
                 
                 if (isNewPos)
                 {
                     if(prod.ilosc_dostepna-amount<0) throw new ArgumentOutOfRangeException();
-                    zProdukt.id = query1.maxId + 1;
+ 
                     zProdukt.id_produkt = prod.id;
                     zProdukt.cena = decimal.Parse(labelPrice.Text);
                     zProdukt.ilosc = amount;
