@@ -20,13 +20,13 @@ namespace SklepElektroniczny
 
         private void Zamowienia_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'dataSetZamowienia.zamowienie' table. You can move, or remove it, as needed.
-            this.zamowienieTableAdapter.Fill(this.dataSetZamowienia.zamowienie);
+            // TODO: This line of code loads data into the 'dataSetZamowienia1.zamowienie' table. You can move, or remove it, as needed.
+            this.zamowienieTableAdapter.Fill(this.dataSetZamowienia1.zamowienie);
         }
 
         private void nowyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form zamowienie = new ZamowieniaEdycja(null);
+            Form zamowienie = new ZamowieniaEdycja(-1);
             zamowienie.Show();
             this.Close();
         }
@@ -53,8 +53,8 @@ namespace SklepElektroniczny
             if (dataGridView1.SelectedCells != null)
             {
                 var selectedItem = dataGridView1.SelectedCells[0].RowIndex;
-                var order = dataGridView1.Rows[selectedItem].Cells[0].Value.ToString();
-                Form zamowienie = new ZamowieniaEdycja(order);
+                var id = (int)dataGridView1.Rows[selectedItem].Cells[2].Value;
+                Form zamowienie = new ZamowieniaEdycja(id);
                 zamowienie.Show();
                 this.Close();
             }
