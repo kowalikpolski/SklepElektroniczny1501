@@ -22,7 +22,7 @@ namespace SklepElektroniczny1501
         private DataContext dc; 
         private string orderNr;
         private Boolean existingOrder;
-        private void refreshList(string orderNr)
+        private void refreshList()
         {
             Table<produkt> produkt = dc.GetTable<produkt>();
             Table<zamowienie_produkt> zamowienie_produkt = dc.GetTable<zamowienie_produkt>();
@@ -43,17 +43,17 @@ namespace SklepElektroniczny1501
             dataGridView1.Columns["id"].Visible = false;
             labelSum.Text = orderItems.Sum(x => x.cena).ToString();
         }
-        public ZamowieniaEdycja(string order)
+        public ZamowieniaEdycja(int id)
         {
             InitializeComponent();
-            orderNr= order;
             
             dc = new DataContext(ConfigurationManager.ConnectionStrings["SklepElektroniczny1501.Properties.Settings.masterConnectionString"].ToString());
             Table<zamowienie> zamowienie = dc.GetTable<zamowienie>();
-            if(order != null)
+            if(id !=-1)
             {
                 existingOrder = true;
-                refreshList(orderNr);
+                orderNr=zamowienie.Single(x=>x.id==id).numer_zamowienia;
+                refreshList();
             }
             else
             {
@@ -66,7 +66,6 @@ namespace SklepElektroniczny1501
                 if (str[0] == DateTime.Now.Year.ToString())
                 {
                     str[1] = String.Format("{0:000}", int.Parse(str[1]) + 1);
-                    orderNr = str[0] + "/" + str[1];
                 }
                 else
                 {
@@ -87,9 +86,9 @@ namespace SklepElektroniczny1501
             if (!existingOrder)
                 pushNewOrderToDatabase();
             var zam=zamowienie.Single(x=>x.numer_zamowienia == orderNr);
-                Form zamowieniePozycjeEdycja = new ZamowieniePozycjeEdycja(0, zam.id);
+                Form zamowieniePozycjeEdycja = new ZamowieniePozycjeEdycja(-1, zam.id);
                 zamowieniePozycjeEdycja.ShowDialog();
-            refreshList(orderNr);
+            refreshList();
 
         }
 
@@ -144,7 +143,7 @@ namespace SklepElektroniczny1501
                 var zProdukt = zamowienie_produkt.Single(x => x.id == (int)dataGridView1.Rows[selectedItem].Cells[0].Value);
                 Form zamowieniePozycjeEdycja = new ZamowieniePozycjeEdycja(zProdukt.id, zam.id);
                 zamowieniePozycjeEdycja.ShowDialog();
-                refreshList(orderNr);
+                refreshList();
             }
         }
     }

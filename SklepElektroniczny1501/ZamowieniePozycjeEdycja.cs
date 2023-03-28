@@ -43,7 +43,7 @@ namespace SklepElektroniczny1501
             }
             comboBoxProdukt.Items.AddRange(produkty.ToArray());
             zProdukt.id_zamowienie = id_zamowienie;
-            if (id != 0)
+            if (id != -1)
             {
                 zProdukt.id=id;
                 zProdukt = zamowienie_produkt.Single(x => x.id == id);
