@@ -17,7 +17,7 @@ namespace SklepElektroniczny1501
         private DataContext dc;
         private int prodId;
         private string[] kategorie;
-        public ProduktyEdycja(string name, string model)
+        public ProduktyEdycja(int id)
         {
             InitializeComponent();
             dc = new DataContext(ConfigurationManager.ConnectionStrings["SklepElektroniczny1501.Properties.Settings.masterConnectionString"].ToString());
@@ -27,7 +27,7 @@ namespace SklepElektroniczny1501
             kategorie=(from kat in kategoria 
                         select kat.kategoria1).ToArray();
             comboBoxCategory.Items.AddRange(kategorie);
-            if (name == null)
+            if (id==-1)
             {  //nowy element
                 prodId = -1;
             }
@@ -36,8 +36,7 @@ namespace SklepElektroniczny1501
                 var editedProduct= (from pk in produkt_kategoria
                             join prod in produkt on pk.id_produkt equals prod.id
                             join kat in kategoria on pk.id_kategoria equals kat.id
-                            where prod.nazwa==name 
-                           where prod.model==model
+                            where prod.id==id 
                            select new{
                                 prod.id,
                                 prod.nazwa,

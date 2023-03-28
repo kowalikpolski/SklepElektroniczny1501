@@ -46,7 +46,7 @@
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(921, 491);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(129, 48);
             this.button1.TabIndex = 0;
@@ -70,7 +70,7 @@
             this.tableLayoutPanel1.Controls.Add(this.textBoxAmount, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.comboBoxCategory, 1, 2);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(16, 15);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 5;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
@@ -201,7 +201,7 @@
             this.ClientSize = new System.Drawing.Size(1067, 554);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.button1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ProduktyEdycja";
             this.Text = "Dodawanie/Edycja Produktu";
             this.tableLayoutPanel1.ResumeLayout(false);
