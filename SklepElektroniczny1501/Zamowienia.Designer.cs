@@ -30,6 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.zamowienieBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dataSetZamowienia1 = new SklepElektroniczny1501.DataSetZamowienia();
             this.dataSetZamowienia = new SklepElektroniczny1501.DataSetZamowienia();
             this.label1 = new System.Windows.Forms.Label();
             this.zamowienieTableAdapter = new SklepElektroniczny1501.DataSetZamowieniaTableAdapters.zamowienieTableAdapter();
@@ -37,17 +39,17 @@
             this.plikToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nowyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.edytujToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dataSetZamowienia1 = new SklepElektroniczny1501.DataSetZamowienia();
-            this.zamowienieBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBoxFilter = new System.Windows.Forms.TextBox();
             this.numerzamowieniaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.datazamowieniaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.expr1DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.zamowienieBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetZamowienia1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetZamowienia)).BeginInit();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSetZamowienia1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.zamowienieBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -63,7 +65,7 @@
             this.expr1DataGridViewTextBoxColumn});
             this.dataGridView1.DataSource = this.zamowienieBindingSource;
             this.dataGridView1.Location = new System.Drawing.Point(16, 69);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
@@ -72,6 +74,16 @@
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CurrentCellChanged += new System.EventHandler(this.dataGridView1_CurrentCellChanged);
             this.dataGridView1.DoubleClick += new System.EventHandler(this.dataGridView1_DoubleClick);
+            // 
+            // zamowienieBindingSource
+            // 
+            this.zamowienieBindingSource.DataMember = "zamowienie";
+            this.zamowienieBindingSource.DataSource = this.dataSetZamowienia1;
+            // 
+            // dataSetZamowienia1
+            // 
+            this.dataSetZamowienia1.DataSetName = "DataSetZamowienia";
+            this.dataSetZamowienia1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // dataSetZamowienia
             // 
@@ -99,7 +111,7 @@
             this.plikToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1313, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1313, 30);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -127,20 +139,27 @@
             this.edytujToolStripMenuItem.Text = "Edytuj";
             this.edytujToolStripMenuItem.Click += new System.EventHandler(this.edytujToolStripMenuItem_Click);
             // 
-            // dataSetZamowienia1
+            // label2
             // 
-            this.dataSetZamowienia1.DataSetName = "DataSetZamowienia";
-            this.dataSetZamowienia1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(1010, 46);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(65, 16);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Wyszukaj";
             // 
-            // zamowienieBindingSource
+            // textBoxFilter
             // 
-            this.zamowienieBindingSource.DataMember = "zamowienie";
-            this.zamowienieBindingSource.DataSource = this.dataSetZamowienia1;
+            this.textBoxFilter.Location = new System.Drawing.Point(1081, 43);
+            this.textBoxFilter.Name = "textBoxFilter";
+            this.textBoxFilter.Size = new System.Drawing.Size(216, 22);
+            this.textBoxFilter.TabIndex = 5;
+            this.textBoxFilter.TextChanged += new System.EventHandler(this.textBoxFilter_TextChanged);
             // 
             // numerzamowieniaDataGridViewTextBoxColumn
             // 
             this.numerzamowieniaDataGridViewTextBoxColumn.DataPropertyName = "numer_zamowienia";
-            this.numerzamowieniaDataGridViewTextBoxColumn.HeaderText = "Numer zamowienia";
+            this.numerzamowieniaDataGridViewTextBoxColumn.HeaderText = "Numer zamówienia";
             this.numerzamowieniaDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.numerzamowieniaDataGridViewTextBoxColumn.Name = "numerzamowieniaDataGridViewTextBoxColumn";
             this.numerzamowieniaDataGridViewTextBoxColumn.ReadOnly = true;
@@ -183,20 +202,22 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1313, 977);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.textBoxFilter);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Zamowienia";
             this.Text = "Zamowienia";
             this.Load += new System.EventHandler(this.Zamowienia_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.zamowienieBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetZamowienia1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetZamowienia)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSetZamowienia1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.zamowienieBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -217,6 +238,8 @@
         private System.Windows.Forms.ToolStripMenuItem edytujToolStripMenuItem;
         private SklepElektroniczny1501.DataSetZamowienia dataSetZamowienia1;
         private System.Windows.Forms.BindingSource zamowienieBindingSource;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox textBoxFilter;
         private System.Windows.Forms.DataGridViewTextBoxColumn numerzamowieniaDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn datazamowieniaDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;

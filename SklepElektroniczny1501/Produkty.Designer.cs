@@ -45,6 +45,8 @@
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.nowyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.edytujToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.textBoxFilter = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.produktBindingSource2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetProdukty1)).BeginInit();
@@ -202,11 +204,30 @@
             this.edytujToolStripMenuItem.Text = "Edytuj";
             this.edytujToolStripMenuItem.Click += new System.EventHandler(this.edytujToolStripMenuItem_Click);
             // 
+            // textBoxFilter
+            // 
+            this.textBoxFilter.Location = new System.Drawing.Point(1055, 42);
+            this.textBoxFilter.Name = "textBoxFilter";
+            this.textBoxFilter.Size = new System.Drawing.Size(216, 22);
+            this.textBoxFilter.TabIndex = 3;
+            this.textBoxFilter.TextChanged += new System.EventHandler(this.textBoxFilter_TextChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(984, 45);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(65, 16);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Wyszukaj";
+            // 
             // Produkty
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1287, 921);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.textBoxFilter);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.menuStrip1);
@@ -244,6 +265,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn iloscdostepnaDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn cenaDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
+        private System.Windows.Forms.TextBox textBoxFilter;
+        private System.Windows.Forms.Label label2;
     }
 }
 

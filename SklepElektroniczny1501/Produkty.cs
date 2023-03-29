@@ -14,6 +14,7 @@ namespace SklepElektroniczny1501
 {
     public partial class Produkty : Form
     {
+        
         public Produkty()
         {
             InitializeComponent();
@@ -61,6 +62,14 @@ namespace SklepElektroniczny1501
                 produkt.ShowDialog();
                 this.produktTableAdapter.Fill(this.dataSetProdukty1.produkt);
             }
+        }
+
+        private void textBoxFilter_TextChanged(object sender, EventArgs e)
+        {
+            var dv = new DataView();
+            dv = this.dataSetProdukty1.produkt.DefaultView;
+            dv.RowFilter = "Substring(Nazwa,1,"+textBoxFilter.Text.Length+")='"+textBoxFilter.Text.ToString()+"'";
+            dataGridView1.DataSource = dv;
         }
     }
 }

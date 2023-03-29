@@ -59,5 +59,13 @@ namespace SklepElektroniczny
                 this.zamowienieTableAdapter.Fill(this.dataSetZamowienia1.zamowienie);
             }
         }
+
+        private void textBoxFilter_TextChanged(object sender, EventArgs e)
+        {
+            var dv = new DataView();
+            dv = this.dataSetZamowienia1.zamowienie.DefaultView;
+            dv.RowFilter = "Substring(numer_zamowienia,1," + textBoxFilter.Text.Length + ")='" + textBoxFilter.Text.ToString() + "'";
+            dataGridView1.DataSource = dv;
+        }
     }
 }
