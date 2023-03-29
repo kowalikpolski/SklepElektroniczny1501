@@ -24,8 +24,6 @@ namespace SklepElektroniczny1501
             // TODO: This line of code loads data into the 'dataSetProdukty1.produkt' table. You can move, or remove it, as needed.
             this.produktTableAdapter.Fill(this.dataSetProdukty1.produkt);
 
-            this.produktTableAdapter.Fill(this.dataSetProdukty.produkt);
-
         }
         
         private void dataGridView1_DoubleClick(object sender, EventArgs e)
@@ -45,8 +43,8 @@ namespace SklepElektroniczny1501
         private void nowyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Form produkt = new ProduktyEdycja(-1);
-            produkt.Show();
-            this.Close();
+            produkt.ShowDialog();
+            this.produktTableAdapter.Fill(this.dataSetProdukty1.produkt);
         }
 
         private void edytujToolStripMenuItem_Click(object sender, EventArgs e)
@@ -60,8 +58,8 @@ namespace SklepElektroniczny1501
                 var selectedItem = dataGridView1.SelectedCells[0].RowIndex;
                 int id = (int)dataGridView1.Rows[selectedItem].Cells[5].Value;
                 Form produkt = new ProduktyEdycja(id);
-                produkt.Show();
-                this.Close();
+                produkt.ShowDialog();
+                this.produktTableAdapter.Fill(this.dataSetProdukty1.produkt);
             }
         }
     }

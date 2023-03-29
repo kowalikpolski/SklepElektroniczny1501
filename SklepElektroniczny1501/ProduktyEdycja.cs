@@ -105,8 +105,6 @@ namespace SklepElektroniczny1501
                     pValidator.ValidateAndThrow(prod);
                 }
                 dc.SubmitChanges();
-                Produkty produkty = new Produkty();
-                produkty.Show();
                 this.Close();
             }
             catch (IndexOutOfRangeException ex)

@@ -27,8 +27,8 @@ namespace SklepElektroniczny
         private void nowyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Form zamowienie = new ZamowieniaEdycja(-1);
-            zamowienie.Show();
-            this.Close();
+            zamowienie.ShowDialog();
+            this.zamowienieTableAdapter.Fill(this.dataSetZamowienia1.zamowienie);
         }
 
         private void edytujToolStripMenuItem_Click(object sender, EventArgs e)
@@ -55,8 +55,8 @@ namespace SklepElektroniczny
                 var selectedItem = dataGridView1.SelectedCells[0].RowIndex;
                 var id = (int)dataGridView1.Rows[selectedItem].Cells[2].Value;
                 Form zamowienie = new ZamowieniaEdycja(id);
-                zamowienie.Show();
-                this.Close();
+                zamowienie.ShowDialog();
+                this.zamowienieTableAdapter.Fill(this.dataSetZamowienia1.zamowienie);
             }
         }
     }

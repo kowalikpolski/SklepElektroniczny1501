@@ -114,8 +114,6 @@ namespace SklepElektroniczny1501
         {
             if(!existingOrder)
                 pushNewOrderToDatabase();
-            Form zamowienia = new Zamowienia();
-            zamowienia.Show();
             this.Close();
         }
         private void pushNewOrderToDatabase()
