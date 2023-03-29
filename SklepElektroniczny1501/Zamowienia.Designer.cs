@@ -30,26 +30,26 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.zamowienieBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dataSetZamowienia1 = new SklepElektroniczny1501.DataSetZamowienia();
-            this.dataSetZamowienia = new SklepElektroniczny1501.DataSetZamowienia();
             this.label1 = new System.Windows.Forms.Label();
-            this.zamowienieTableAdapter = new SklepElektroniczny1501.DataSetZamowieniaTableAdapters.zamowienieTableAdapter();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.plikToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nowyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.edytujToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label2 = new System.Windows.Forms.Label();
             this.textBoxFilter = new System.Windows.Forms.TextBox();
+            this.zamowienieBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dataSetZamowienia1 = new SklepElektroniczny1501.DataSetZamowienia();
+            this.dataSetZamowienia = new SklepElektroniczny1501.DataSetZamowienia();
+            this.zamowienieTableAdapter = new SklepElektroniczny1501.DataSetZamowieniaTableAdapters.zamowienieTableAdapter();
             this.numerzamowieniaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.datazamowieniaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.suma_sprzedazy = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.expr1DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.zamowienieBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetZamowienia1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetZamowienia)).BeginInit();
-            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -61,8 +61,8 @@
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.numerzamowieniaDataGridViewTextBoxColumn,
             this.datazamowieniaDataGridViewTextBoxColumn,
-            this.idDataGridViewTextBoxColumn,
-            this.expr1DataGridViewTextBoxColumn});
+            this.suma_sprzedazy,
+            this.idDataGridViewTextBoxColumn});
             this.dataGridView1.DataSource = this.zamowienieBindingSource;
             this.dataGridView1.Location = new System.Drawing.Point(16, 69);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
@@ -75,21 +75,6 @@
             this.dataGridView1.CurrentCellChanged += new System.EventHandler(this.dataGridView1_CurrentCellChanged);
             this.dataGridView1.DoubleClick += new System.EventHandler(this.dataGridView1_DoubleClick);
             // 
-            // zamowienieBindingSource
-            // 
-            this.zamowienieBindingSource.DataMember = "zamowienie";
-            this.zamowienieBindingSource.DataSource = this.dataSetZamowienia1;
-            // 
-            // dataSetZamowienia1
-            // 
-            this.dataSetZamowienia1.DataSetName = "DataSetZamowienia";
-            this.dataSetZamowienia1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // dataSetZamowienia
-            // 
-            this.dataSetZamowienia.DataSetName = "DataSetZamowienia";
-            this.dataSetZamowienia.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -99,10 +84,6 @@
             this.label1.Size = new System.Drawing.Size(101, 16);
             this.label1.TabIndex = 1;
             this.label1.Text = "Lista zamówień:";
-            // 
-            // zamowienieTableAdapter
-            // 
-            this.zamowienieTableAdapter.ClearBeforeFill = true;
             // 
             // menuStrip1
             // 
@@ -121,7 +102,7 @@
             this.nowyToolStripMenuItem,
             this.edytujToolStripMenuItem});
             this.plikToolStripMenuItem.Name = "plikToolStripMenuItem";
-            this.plikToolStripMenuItem.Size = new System.Drawing.Size(46, 24);
+            this.plikToolStripMenuItem.Size = new System.Drawing.Size(46, 26);
             this.plikToolStripMenuItem.Text = "Plik";
             // 
             // nowyToolStripMenuItem
@@ -156,6 +137,25 @@
             this.textBoxFilter.TabIndex = 5;
             this.textBoxFilter.TextChanged += new System.EventHandler(this.textBoxFilter_TextChanged);
             // 
+            // zamowienieBindingSource
+            // 
+            this.zamowienieBindingSource.DataMember = "zamowienie";
+            this.zamowienieBindingSource.DataSource = this.dataSetZamowienia1;
+            // 
+            // dataSetZamowienia1
+            // 
+            this.dataSetZamowienia1.DataSetName = "DataSetZamowienia";
+            this.dataSetZamowienia1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // dataSetZamowienia
+            // 
+            this.dataSetZamowienia.DataSetName = "DataSetZamowienia";
+            this.dataSetZamowienia.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // zamowienieTableAdapter
+            // 
+            this.zamowienieTableAdapter.ClearBeforeFill = true;
+            // 
             // numerzamowieniaDataGridViewTextBoxColumn
             // 
             this.numerzamowieniaDataGridViewTextBoxColumn.DataPropertyName = "numer_zamowienia";
@@ -176,6 +176,15 @@
             this.datazamowieniaDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.datazamowieniaDataGridViewTextBoxColumn.Width = 125;
             // 
+            // suma_sprzedazy
+            // 
+            this.suma_sprzedazy.DataPropertyName = "suma_sprzedazy";
+            this.suma_sprzedazy.HeaderText = "Suma sprzedaży";
+            this.suma_sprzedazy.MinimumWidth = 6;
+            this.suma_sprzedazy.Name = "suma_sprzedazy";
+            this.suma_sprzedazy.ReadOnly = true;
+            this.suma_sprzedazy.Width = 125;
+            // 
             // idDataGridViewTextBoxColumn
             // 
             this.idDataGridViewTextBoxColumn.DataPropertyName = "id";
@@ -186,16 +195,6 @@
             this.idDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.idDataGridViewTextBoxColumn.Visible = false;
             this.idDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // expr1DataGridViewTextBoxColumn
-            // 
-            this.expr1DataGridViewTextBoxColumn.DataPropertyName = "Expr1";
-            this.expr1DataGridViewTextBoxColumn.HeaderText = "Suma sprzedaży";
-            this.expr1DataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.expr1DataGridViewTextBoxColumn.Name = "expr1DataGridViewTextBoxColumn";
-            this.expr1DataGridViewTextBoxColumn.ReadOnly = true;
-            this.expr1DataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.expr1DataGridViewTextBoxColumn.Width = 125;
             // 
             // Zamowienia
             // 
@@ -213,11 +212,11 @@
             this.Text = "Zamowienia";
             this.Load += new System.EventHandler(this.Zamowienia_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.zamowienieBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetZamowienia1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetZamowienia)).EndInit();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -242,7 +241,7 @@
         private System.Windows.Forms.TextBox textBoxFilter;
         private System.Windows.Forms.DataGridViewTextBoxColumn numerzamowieniaDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn datazamowieniaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn suma_sprzedazy;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn expr1DataGridViewTextBoxColumn;
     }
 }

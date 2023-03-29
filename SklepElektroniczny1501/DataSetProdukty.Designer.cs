@@ -870,10 +870,7 @@ namespace SklepElektroniczny1501.DataSetProduktyTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT        produkt.id, produkt.nazwa, produkt.model, kategoria.kategoria, produkt.ilosc_dostepna, produkt.cena
-FROM            produkt_kategoria INNER JOIN
-                         produkt ON produkt.id = produkt_kategoria.id_produkt INNER JOIN
-                         kategoria ON kategoria.id = produkt_kategoria.id_kategoria";
+            this._commandCollection[0].CommandText = "SELECT id, nazwa, model, kategoria, ilosc_dostepna, cena\r\nFROM     products_view";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         

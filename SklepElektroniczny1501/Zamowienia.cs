@@ -53,7 +53,7 @@ namespace SklepElektroniczny
             if (dataGridView1.SelectedCells != null)
             {
                 var selectedItem = dataGridView1.SelectedCells[0].RowIndex;
-                var id = (int)dataGridView1.Rows[selectedItem].Cells[2].Value;
+                var id = (int)dataGridView1.Rows[selectedItem].Cells[3].Value;
                 Form zamowienie = new ZamowieniaEdycja(id);
                 zamowienie.ShowDialog();
                 this.zamowienieTableAdapter.Fill(this.dataSetZamowienia1.zamowienie);

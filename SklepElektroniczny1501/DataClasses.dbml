@@ -47,4 +47,32 @@
       <Association Name="zamowienie_zamowienie_produkt" Member="zamowienie" ThisKey="id_zamowienie" OtherKey="id" Type="zamowienie" IsForeignKey="true" />
     </Type>
   </Table>
+  <Table Name="dbo.orders_view" Member="orders_views">
+    <Type Name="orders_view">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="numer_zamowienia" Type="System.String" DbType="Char(8) NOT NULL" CanBeNull="false" />
+      <Column Name="suma_sprzedazy" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="data_zamowienia" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.products_view" Member="products_views">
+    <Type Name="products_view">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="nazwa" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="model" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="kategoria" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="ilosc_dostepna" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="cena" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.orderitems_view" Member="orderitems_views">
+    <Type Name="orderitems_view">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="numer_zamowienia" Type="System.String" DbType="Char(8) NOT NULL" CanBeNull="false" />
+      <Column Name="nazwa" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="model" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="ilosc" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="cena" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
 </Database>

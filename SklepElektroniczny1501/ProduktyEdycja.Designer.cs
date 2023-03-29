@@ -141,10 +141,9 @@
             this.textBoxName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBoxName.Location = new System.Drawing.Point(182, 12);
             this.textBoxName.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
-            this.textBoxName.MaximumSize = new System.Drawing.Size(265, 22);
             this.textBoxName.MinimumSize = new System.Drawing.Size(4, 22);
             this.textBoxName.Name = "textBoxName";
-            this.textBoxName.Size = new System.Drawing.Size(265, 22);
+            this.textBoxName.Size = new System.Drawing.Size(399, 22);
             this.textBoxName.TabIndex = 5;
             // 
             // textBoxModel
@@ -152,10 +151,9 @@
             this.textBoxModel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBoxModel.Location = new System.Drawing.Point(182, 105);
             this.textBoxModel.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
-            this.textBoxModel.MaximumSize = new System.Drawing.Size(265, 22);
             this.textBoxModel.MinimumSize = new System.Drawing.Size(4, 22);
             this.textBoxModel.Name = "textBoxModel";
-            this.textBoxModel.Size = new System.Drawing.Size(265, 22);
+            this.textBoxModel.Size = new System.Drawing.Size(399, 22);
             this.textBoxModel.TabIndex = 6;
             // 
             // textBoxPrice
@@ -163,10 +161,9 @@
             this.textBoxPrice.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBoxPrice.Location = new System.Drawing.Point(182, 384);
             this.textBoxPrice.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
-            this.textBoxPrice.MaximumSize = new System.Drawing.Size(265, 22);
             this.textBoxPrice.MinimumSize = new System.Drawing.Size(4, 22);
             this.textBoxPrice.Name = "textBoxPrice";
-            this.textBoxPrice.Size = new System.Drawing.Size(265, 22);
+            this.textBoxPrice.Size = new System.Drawing.Size(399, 22);
             this.textBoxPrice.TabIndex = 7;
             // 
             // textBoxAmount
@@ -174,10 +171,9 @@
             this.textBoxAmount.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBoxAmount.Location = new System.Drawing.Point(182, 291);
             this.textBoxAmount.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
-            this.textBoxAmount.MaximumSize = new System.Drawing.Size(265, 22);
             this.textBoxAmount.MinimumSize = new System.Drawing.Size(4, 22);
             this.textBoxAmount.Name = "textBoxAmount";
-            this.textBoxAmount.Size = new System.Drawing.Size(265, 22);
+            this.textBoxAmount.Size = new System.Drawing.Size(399, 22);
             this.textBoxAmount.TabIndex = 8;
             // 
             // comboBoxCategory
@@ -188,9 +184,8 @@
             this.comboBoxCategory.FormattingEnabled = true;
             this.comboBoxCategory.Location = new System.Drawing.Point(182, 198);
             this.comboBoxCategory.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
-            this.comboBoxCategory.MaximumSize = new System.Drawing.Size(265, 0);
             this.comboBoxCategory.Name = "comboBoxCategory";
-            this.comboBoxCategory.Size = new System.Drawing.Size(265, 24);
+            this.comboBoxCategory.Size = new System.Drawing.Size(399, 24);
             this.comboBoxCategory.TabIndex = 9;
             this.comboBoxCategory.ValueMember = "kategoria";
             // 

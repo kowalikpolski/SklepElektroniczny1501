@@ -27,20 +27,13 @@ namespace SklepElektroniczny1501
             Table<produkt> produkt = dc.GetTable<produkt>();
             Table<zamowienie_produkt> zamowienie_produkt = dc.GetTable<zamowienie_produkt>();
             Table<zamowienie> zamowienie = dc.GetTable<zamowienie>();
-            var orderItems = (from zp in zamowienie_produkt
-                              join prod in produkt on zp.id_produkt equals prod.id
-                              join zam in zamowienie on zp.id_zamowienie equals zam.id
-                              where zam.numer_zamowienia == orderNr
-                              select new
-                              {
-                                  zp.id,
-                                  prod.nazwa,
-                                  prod.model,
-                                  zp.ilosc,
-                                  zp.cena,
-                              }).ToList();
+            Table<orderitems_view> oItemsView=dc.GetTable<orderitems_view>();
+            var orderItems = (from oiv in oItemsView
+                              where oiv.numer_zamowienia == orderNr
+                              select oiv).ToList();
             dataGridView1.DataSource = orderItems;
             dataGridView1.Columns["id"].Visible = false;
+            dataGridView1.Columns["numer_zamowienia"].Visible=false;
             labelSum.Text = orderItems.Sum(x => x.cena).ToString();
         }
         public ZamowieniaEdycja(int id)

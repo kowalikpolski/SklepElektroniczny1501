@@ -116,6 +116,30 @@ namespace SklepElektroniczny1501
 				return this.GetTable<zamowienie_produkt>();
 			}
 		}
+		
+		public System.Data.Linq.Table<orders_view> orders_views
+		{
+			get
+			{
+				return this.GetTable<orders_view>();
+			}
+		}
+		
+		public System.Data.Linq.Table<products_view> products_views
+		{
+			get
+			{
+				return this.GetTable<products_view>();
+			}
+		}
+		
+		public System.Data.Linq.Table<orderitems_view> orderitems_views
+		{
+			get
+			{
+				return this.GetTable<orderitems_view>();
+			}
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.kategoria")]
@@ -1036,6 +1060,321 @@ namespace SklepElektroniczny1501
 			if ((this.PropertyChanged != null))
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.orders_view")]
+	public partial class orders_view
+	{
+		
+		private int _id;
+		
+		private string _numer_zamowienia;
+		
+		private decimal _suma_sprzedazy;
+		
+		private System.DateTime _data_zamowienia;
+		
+		public orders_view()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL")]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this._id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_numer_zamowienia", DbType="Char(8) NOT NULL", CanBeNull=false)]
+		public string numer_zamowienia
+		{
+			get
+			{
+				return this._numer_zamowienia;
+			}
+			set
+			{
+				if ((this._numer_zamowienia != value))
+				{
+					this._numer_zamowienia = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_suma_sprzedazy", DbType="Money NOT NULL")]
+		public decimal suma_sprzedazy
+		{
+			get
+			{
+				return this._suma_sprzedazy;
+			}
+			set
+			{
+				if ((this._suma_sprzedazy != value))
+				{
+					this._suma_sprzedazy = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_data_zamowienia", DbType="Date NOT NULL")]
+		public System.DateTime data_zamowienia
+		{
+			get
+			{
+				return this._data_zamowienia;
+			}
+			set
+			{
+				if ((this._data_zamowienia != value))
+				{
+					this._data_zamowienia = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.products_view")]
+	public partial class products_view
+	{
+		
+		private int _id;
+		
+		private string _nazwa;
+		
+		private string _model;
+		
+		private string _kategoria;
+		
+		private int _ilosc_dostepna;
+		
+		private decimal _cena;
+		
+		public products_view()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL")]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this._id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nazwa", DbType="VarChar(30) NOT NULL", CanBeNull=false)]
+		public string nazwa
+		{
+			get
+			{
+				return this._nazwa;
+			}
+			set
+			{
+				if ((this._nazwa != value))
+				{
+					this._nazwa = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_model", DbType="VarChar(30) NOT NULL", CanBeNull=false)]
+		public string model
+		{
+			get
+			{
+				return this._model;
+			}
+			set
+			{
+				if ((this._model != value))
+				{
+					this._model = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_kategoria", DbType="VarChar(30) NOT NULL", CanBeNull=false)]
+		public string kategoria
+		{
+			get
+			{
+				return this._kategoria;
+			}
+			set
+			{
+				if ((this._kategoria != value))
+				{
+					this._kategoria = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ilosc_dostepna", DbType="Int NOT NULL")]
+		public int ilosc_dostepna
+		{
+			get
+			{
+				return this._ilosc_dostepna;
+			}
+			set
+			{
+				if ((this._ilosc_dostepna != value))
+				{
+					this._ilosc_dostepna = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cena", DbType="Decimal(18,0) NOT NULL")]
+		public decimal cena
+		{
+			get
+			{
+				return this._cena;
+			}
+			set
+			{
+				if ((this._cena != value))
+				{
+					this._cena = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.orderitems_view")]
+	public partial class orderitems_view
+	{
+		
+		private int _id;
+		
+		private string _numer_zamowienia;
+		
+		private string _nazwa;
+		
+		private string _model;
+		
+		private int _ilosc;
+		
+		private decimal _cena;
+		
+		public orderitems_view()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL")]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this._id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_numer_zamowienia", DbType="Char(8) NOT NULL", CanBeNull=false)]
+		public string numer_zamowienia
+		{
+			get
+			{
+				return this._numer_zamowienia;
+			}
+			set
+			{
+				if ((this._numer_zamowienia != value))
+				{
+					this._numer_zamowienia = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nazwa", DbType="VarChar(30) NOT NULL", CanBeNull=false)]
+		public string nazwa
+		{
+			get
+			{
+				return this._nazwa;
+			}
+			set
+			{
+				if ((this._nazwa != value))
+				{
+					this._nazwa = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_model", DbType="VarChar(30) NOT NULL", CanBeNull=false)]
+		public string model
+		{
+			get
+			{
+				return this._model;
+			}
+			set
+			{
+				if ((this._model != value))
+				{
+					this._model = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ilosc", DbType="Int NOT NULL")]
+		public int ilosc
+		{
+			get
+			{
+				return this._ilosc;
+			}
+			set
+			{
+				if ((this._ilosc != value))
+				{
+					this._ilosc = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cena", DbType="Money NOT NULL")]
+		public decimal cena
+		{
+			get
+			{
+				return this._cena;
+			}
+			set
+			{
+				if ((this._cena != value))
+				{
+					this._cena = value;
+				}
 			}
 		}
 	}

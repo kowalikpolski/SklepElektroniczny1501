@@ -76,11 +76,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSetZamowienia.xsd</DependentUpon>
     </Compile>
-    <Compile Include="masterDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>masterDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="OrderProductValidator.cs" />
     <Compile Include="ProductValidator.cs" />
     <Compile Include="Sklep.cs">
@@ -181,17 +176,6 @@
     </None>
     <None Include="DataSetZamowienia.xss">
       <DependentUpon>DataSetZamowienia.xsd</DependentUpon>
-    </None>
-    <None Include="masterDataSet.xsc">
-      <DependentUpon>masterDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="masterDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>masterDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="masterDataSet.xss">
-      <DependentUpon>masterDataSet.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

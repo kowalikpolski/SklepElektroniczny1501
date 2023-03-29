@@ -120,10 +120,9 @@
             this.textBoxAmount.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBoxAmount.Location = new System.Drawing.Point(167, 113);
             this.textBoxAmount.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
-            this.textBoxAmount.MaximumSize = new System.Drawing.Size(265, 22);
             this.textBoxAmount.MinimumSize = new System.Drawing.Size(4, 22);
             this.textBoxAmount.Name = "textBoxAmount";
-            this.textBoxAmount.Size = new System.Drawing.Size(265, 22);
+            this.textBoxAmount.Size = new System.Drawing.Size(362, 22);
             this.textBoxAmount.TabIndex = 6;
             this.textBoxAmount.TextChanged += new System.EventHandler(this.textBoxAmount_TextChanged);
             // 
@@ -134,9 +133,8 @@
             this.comboBoxProdukt.FormattingEnabled = true;
             this.comboBoxProdukt.Location = new System.Drawing.Point(167, 12);
             this.comboBoxProdukt.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
-            this.comboBoxProdukt.MaximumSize = new System.Drawing.Size(265, 0);
             this.comboBoxProdukt.Name = "comboBoxProdukt";
-            this.comboBoxProdukt.Size = new System.Drawing.Size(265, 24);
+            this.comboBoxProdukt.Size = new System.Drawing.Size(362, 24);
             this.comboBoxProdukt.TabIndex = 8;
             this.comboBoxProdukt.SelectedIndexChanged += new System.EventHandler(this.comboBoxProdukt_SelectedIndexChanged);
             // 

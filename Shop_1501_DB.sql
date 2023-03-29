@@ -25,3 +25,18 @@ insert into produkt_kategoria values (4,2)
 insert into zamowienie_produkt values (3,1,1,11000)
 insert into zamowienie_produkt values (4,1,2,8000)
 insert into zamowienie_produkt values (2,2,3,21000)
+
+create view products_view as 
+SELECT produkt.id, produkt.nazwa, produkt.model, kategoria.kategoria, produkt.ilosc_dostepna, produkt.cena
+FROM produkt_kategoria INNER JOIN produkt ON produkt.id = produkt_kategoria.id_produkt
+INNER JOIN kategoria ON kategoria.id = produkt_kategoria.id_kategoria
+
+create view orders_view as
+SELECT zamowienie.id, zamowienie.numer_zamowienia, ISNULL(SUM(zamowienie_produkt.cena), 0) AS suma_sprzedazy, zamowienie.data_zamowienia
+FROM zamowienie LEFT OUTER JOIN zamowienie_produkt ON zamowienie.id = zamowienie_produkt.id_zamowienie
+GROUP BY zamowienie.id, zamowienie.numer_zamowienia, zamowienie.data_zamowienia
+
+create view orderitems_view as
+SELECT zamowienie_produkt.id,zamowienie.numer_zamowienia, produkt.nazwa, produkt.model, zamowienie_produkt.ilosc,zamowienie_produkt.cena
+FROM zamowienie_produkt inner JOIN produkt ON produkt.id = zamowienie_produkt.id_produkt
+inner join zamowienie on zamowienie_produkt.id_zamowienie = zamowienie.id

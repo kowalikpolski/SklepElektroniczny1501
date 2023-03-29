@@ -9,13 +9,11 @@
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="produktTableAdapter" GeneratorDataComponentClassName="produktTableAdapter" Name="produkt" UserDataComponentName="produktTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="masterConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="masterConnectionString (Settings)" DbObjectName="sklep_elektroniczny.dbo.products_view" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT        produkt.id, produkt.nazwa, produkt.model, kategoria.kategoria, produkt.ilosc_dostepna, produkt.cena
-FROM            produkt_kategoria INNER JOIN
-                         produkt ON produkt.id = produkt_kategoria.id_produkt INNER JOIN
-                         kategoria ON kategoria.id = produkt_kategoria.id_kategoria</CommandText>
+                    <CommandText>SELECT id, nazwa, model, kategoria, ilosc_dostepna, cena
+FROM     products_view</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -39,33 +37,33 @@ FROM            produkt_kategoria INNER JOIN
   <xs:element name="DataSetProdukty" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="DataSetProdukty" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSetProdukty">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="produkt" msprop:Generator_RowClassName="produktRow" msprop:Generator_RowEvHandlerName="produktRowChangeEventHandler" msprop:Generator_RowDeletedName="produktRowDeleted" msprop:Generator_RowDeletingName="produktRowDeleting" msprop:Generator_RowEvArgName="produktRowChangeEvent" msprop:Generator_TablePropName="produkt" msprop:Generator_RowChangedName="produktRowChanged" msprop:Generator_UserTableName="produkt" msprop:Generator_RowChangingName="produktRowChanging" msprop:Generator_TableClassName="produktDataTable" msprop:Generator_TableVarName="tableprodukt">
+        <xs:element name="produkt" msprop:Generator_RowEvHandlerName="produktRowChangeEventHandler" msprop:Generator_RowDeletedName="produktRowDeleted" msprop:Generator_RowDeletingName="produktRowDeleting" msprop:Generator_RowEvArgName="produktRowChangeEvent" msprop:Generator_TablePropName="produkt" msprop:Generator_RowChangedName="produktRowChanged" msprop:Generator_UserTableName="produkt" msprop:Generator_RowChangingName="produktRowChanging" msprop:Generator_RowClassName="produktRow" msprop:Generator_TableClassName="produktDataTable" msprop:Generator_TableVarName="tableprodukt">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="nazwa" msprop:Generator_UserColumnName="nazwa" msprop:Generator_ColumnPropNameInTable="nazwaColumn" msprop:Generator_ColumnPropNameInRow="nazwa" msprop:Generator_ColumnVarNameInTable="columnnazwa">
+              <xs:element name="nazwa" msprop:Generator_ColumnPropNameInTable="nazwaColumn" msprop:Generator_ColumnPropNameInRow="nazwa" msprop:Generator_UserColumnName="nazwa" msprop:Generator_ColumnVarNameInTable="columnnazwa">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="30" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="model" msprop:Generator_UserColumnName="model" msprop:Generator_ColumnPropNameInTable="modelColumn" msprop:Generator_ColumnPropNameInRow="model" msprop:Generator_ColumnVarNameInTable="columnmodel">
+              <xs:element name="model" msprop:Generator_ColumnPropNameInTable="modelColumn" msprop:Generator_ColumnPropNameInRow="model" msprop:Generator_UserColumnName="model" msprop:Generator_ColumnVarNameInTable="columnmodel">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="30" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="kategoria" msprop:Generator_UserColumnName="kategoria" msprop:Generator_ColumnPropNameInTable="kategoriaColumn" msprop:Generator_ColumnPropNameInRow="kategoria" msprop:Generator_ColumnVarNameInTable="columnkategoria">
+              <xs:element name="kategoria" msprop:Generator_ColumnPropNameInTable="kategoriaColumn" msprop:Generator_ColumnPropNameInRow="kategoria" msprop:Generator_UserColumnName="kategoria" msprop:Generator_ColumnVarNameInTable="columnkategoria">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="30" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="ilosc_dostepna" msprop:Generator_UserColumnName="ilosc_dostepna" msprop:Generator_ColumnPropNameInTable="ilosc_dostepnaColumn" msprop:Generator_ColumnPropNameInRow="ilosc_dostepna" msprop:Generator_ColumnVarNameInTable="columnilosc_dostepna" type="xs:int" />
-              <xs:element name="cena" msprop:Generator_UserColumnName="cena" msprop:Generator_ColumnPropNameInTable="cenaColumn" msprop:Generator_ColumnPropNameInRow="cena" msprop:Generator_ColumnVarNameInTable="columncena" type="xs:decimal" />
-              <xs:element name="id" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_UserColumnName="id" type="xs:int" />
+              <xs:element name="ilosc_dostepna" msprop:Generator_ColumnPropNameInTable="ilosc_dostepnaColumn" msprop:Generator_ColumnPropNameInRow="ilosc_dostepna" msprop:Generator_UserColumnName="ilosc_dostepna" msprop:Generator_ColumnVarNameInTable="columnilosc_dostepna" type="xs:int" />
+              <xs:element name="cena" msprop:Generator_ColumnPropNameInTable="cenaColumn" msprop:Generator_ColumnPropNameInRow="cena" msprop:Generator_UserColumnName="cena" msprop:Generator_ColumnVarNameInTable="columncena" type="xs:decimal" />
+              <xs:element name="id" msprop:Generator_UserColumnName="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnVarNameInTable="columnid" type="xs:int" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

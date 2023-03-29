@@ -285,7 +285,7 @@ namespace SklepElektroniczny1501 {
             
             private global::System.Data.DataColumn columnid;
             
-            private global::System.Data.DataColumn columnExpr1;
+            private global::System.Data.DataColumn columnsuma_sprzedazy;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
@@ -346,9 +346,9 @@ namespace SklepElektroniczny1501 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn Expr1Column {
+            public global::System.Data.DataColumn suma_sprzedazyColumn {
                 get {
-                    return this.columnExpr1;
+                    return this.columnsuma_sprzedazy;
                 }
             }
             
@@ -389,13 +389,13 @@ namespace SklepElektroniczny1501 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public zamowienieRow AddzamowienieRow(string numer_zamowienia, System.DateTime data_zamowienia, int id, decimal Expr1) {
+            public zamowienieRow AddzamowienieRow(string numer_zamowienia, System.DateTime data_zamowienia, int id, decimal suma_sprzedazy) {
                 zamowienieRow rowzamowienieRow = ((zamowienieRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         numer_zamowienia,
                         data_zamowienia,
                         id,
-                        Expr1};
+                        suma_sprzedazy};
                 rowzamowienieRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowzamowienieRow);
                 return rowzamowienieRow;
@@ -428,7 +428,7 @@ namespace SklepElektroniczny1501 {
                 this.columnnumer_zamowienia = base.Columns["numer_zamowienia"];
                 this.columndata_zamowienia = base.Columns["data_zamowienia"];
                 this.columnid = base.Columns["id"];
-                this.columnExpr1 = base.Columns["Expr1"];
+                this.columnsuma_sprzedazy = base.Columns["suma_sprzedazy"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -440,8 +440,8 @@ namespace SklepElektroniczny1501 {
                 base.Columns.Add(this.columndata_zamowienia);
                 this.columnid = new global::System.Data.DataColumn("id", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnid);
-                this.columnExpr1 = new global::System.Data.DataColumn("Expr1", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnExpr1);
+                this.columnsuma_sprzedazy = new global::System.Data.DataColumn("suma_sprzedazy", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnsuma_sprzedazy);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnid}, true));
                 this.columnnumer_zamowienia.AllowDBNull = false;
@@ -449,7 +449,7 @@ namespace SklepElektroniczny1501 {
                 this.columndata_zamowienia.AllowDBNull = false;
                 this.columnid.AllowDBNull = false;
                 this.columnid.Unique = true;
-                this.columnExpr1.ReadOnly = true;
+                this.columnsuma_sprzedazy.ReadOnly = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -625,30 +625,30 @@ namespace SklepElektroniczny1501 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public decimal Expr1 {
+            public decimal suma_sprzedazy {
                 get {
                     try {
-                        return ((decimal)(this[this.tablezamowienie.Expr1Column]));
+                        return ((decimal)(this[this.tablezamowienie.suma_sprzedazyColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Expr1\' in table \'zamowienie\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'suma_sprzedazy\' in table \'zamowienie\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tablezamowienie.Expr1Column] = value;
+                    this[this.tablezamowienie.suma_sprzedazyColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsExpr1Null() {
-                return this.IsNull(this.tablezamowienie.Expr1Column);
+            public bool Issuma_sprzedazyNull() {
+                return this.IsNull(this.tablezamowienie.suma_sprzedazyColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetExpr1Null() {
-                this[this.tablezamowienie.Expr1Column] = global::System.Convert.DBNull;
+            public void Setsuma_sprzedazyNull() {
+                this[this.tablezamowienie.suma_sprzedazyColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -814,7 +814,7 @@ namespace SklepElektroniczny1501.DataSetZamowieniaTableAdapters {
             tableMapping.ColumnMappings.Add("numer_zamowienia", "numer_zamowienia");
             tableMapping.ColumnMappings.Add("data_zamowienia", "data_zamowienia");
             tableMapping.ColumnMappings.Add("id", "id");
-            tableMapping.ColumnMappings.Add("Expr1", "Expr1");
+            tableMapping.ColumnMappings.Add("suma_sprzedazy", "suma_sprzedazy");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -831,10 +831,7 @@ namespace SklepElektroniczny1501.DataSetZamowieniaTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT        zamowienie.id, zamowienie.numer_zamowienia, ISNULL(SUM(zamowienie_produkt.cena), 0) AS Expr1, zamowienie.data_zamowienia
-FROM            zamowienie LEFT OUTER JOIN
-                         zamowienie_produkt ON zamowienie.id = zamowienie_produkt.id_zamowienie
-GROUP BY zamowienie.id, zamowienie.numer_zamowienia, zamowienie.data_zamowienia";
+            this._commandCollection[0].CommandText = "select * from orders_view";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         

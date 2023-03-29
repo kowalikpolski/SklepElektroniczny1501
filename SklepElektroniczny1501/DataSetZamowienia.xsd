@@ -9,13 +9,10 @@
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="zamowienieTableAdapter" GeneratorDataComponentClassName="zamowienieTableAdapter" Name="zamowienie" UserDataComponentName="zamowienieTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="masterConnectionString (Settings)" DbObjectName="sklep_elektroniczny.dbo.zamowienie" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="masterConnectionString (Settings)" DbObjectName="sklep_elektroniczny.dbo.orders_view" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT        zamowienie.id, zamowienie.numer_zamowienia, ISNULL(SUM(zamowienie_produkt.cena), 0) AS Expr1, zamowienie.data_zamowienia
-FROM            zamowienie LEFT OUTER JOIN
-                         zamowienie_produkt ON zamowienie.id = zamowienie_produkt.id_zamowienie
-GROUP BY zamowienie.id, zamowienie.numer_zamowienia, zamowienie.data_zamowienia</CommandText>
+                    <CommandText>select * from orders_view</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -25,7 +22,7 @@ GROUP BY zamowienie.id, zamowienie.numer_zamowienia, zamowienie.data_zamowienia<
               <Mapping SourceColumn="numer_zamowienia" DataSetColumn="numer_zamowienia" />
               <Mapping SourceColumn="data_zamowienia" DataSetColumn="data_zamowienia" />
               <Mapping SourceColumn="id" DataSetColumn="id" />
-              <Mapping SourceColumn="Expr1" DataSetColumn="Expr1" />
+              <Mapping SourceColumn="suma_sprzedazy" DataSetColumn="suma_sprzedazy" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -49,7 +46,7 @@ GROUP BY zamowienie.id, zamowienie.numer_zamowienia, zamowienie.data_zamowienia<
               </xs:element>
               <xs:element name="data_zamowienia" msprop:Generator_ColumnPropNameInTable="data_zamowieniaColumn" msprop:Generator_ColumnPropNameInRow="data_zamowienia" msprop:Generator_UserColumnName="data_zamowienia" msprop:Generator_ColumnVarNameInTable="columndata_zamowienia" type="xs:dateTime" />
               <xs:element name="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_UserColumnName="id" msprop:Generator_ColumnVarNameInTable="columnid" type="xs:int" />
-              <xs:element name="Expr1" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInTable="Expr1Column" msprop:Generator_ColumnPropNameInRow="Expr1" msprop:Generator_UserColumnName="Expr1" msprop:Generator_ColumnVarNameInTable="columnExpr1" type="xs:decimal" minOccurs="0" />
+              <xs:element name="suma_sprzedazy" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="suma_sprzedazy" msprop:Generator_ColumnPropNameInTable="suma_sprzedazyColumn" msprop:Generator_ColumnVarNameInTable="columnsuma_sprzedazy" msprop:Generator_UserColumnName="suma_sprzedazy" type="xs:decimal" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
