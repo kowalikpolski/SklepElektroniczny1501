@@ -45,7 +45,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(921, 491);
+            this.button1.Location = new System.Drawing.Point(481, 493);
             this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(129, 48);
@@ -78,7 +78,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1035, 469);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(594, 469);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // label1
@@ -88,7 +88,7 @@
             this.label1.Location = new System.Drawing.Point(13, 12);
             this.label1.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(268, 69);
+            this.label1.Size = new System.Drawing.Size(143, 69);
             this.label1.TabIndex = 0;
             this.label1.Text = "Nazwa";
             // 
@@ -99,7 +99,7 @@
             this.label2.Location = new System.Drawing.Point(13, 105);
             this.label2.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(268, 69);
+            this.label2.Size = new System.Drawing.Size(143, 69);
             this.label2.TabIndex = 1;
             this.label2.Text = "Model";
             // 
@@ -110,7 +110,7 @@
             this.label3.Location = new System.Drawing.Point(13, 198);
             this.label3.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(268, 69);
+            this.label3.Size = new System.Drawing.Size(143, 69);
             this.label3.TabIndex = 2;
             this.label3.Text = "Kategoria";
             // 
@@ -121,7 +121,7 @@
             this.label4.Location = new System.Drawing.Point(13, 291);
             this.label4.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(268, 69);
+            this.label4.Size = new System.Drawing.Size(143, 69);
             this.label4.TabIndex = 3;
             this.label4.Text = "Ilość dostępna";
             // 
@@ -132,16 +132,16 @@
             this.label5.Location = new System.Drawing.Point(13, 384);
             this.label5.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(268, 73);
+            this.label5.Size = new System.Drawing.Size(143, 73);
             this.label5.TabIndex = 4;
             this.label5.Text = "Cena";
             // 
             // textBoxName
             // 
             this.textBoxName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxName.Location = new System.Drawing.Point(307, 12);
+            this.textBoxName.Location = new System.Drawing.Point(182, 12);
             this.textBoxName.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
-            this.textBoxName.MaximumSize = new System.Drawing.Size(265, 4);
+            this.textBoxName.MaximumSize = new System.Drawing.Size(265, 22);
             this.textBoxName.MinimumSize = new System.Drawing.Size(4, 22);
             this.textBoxName.Name = "textBoxName";
             this.textBoxName.Size = new System.Drawing.Size(265, 22);
@@ -150,9 +150,9 @@
             // textBoxModel
             // 
             this.textBoxModel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxModel.Location = new System.Drawing.Point(307, 105);
+            this.textBoxModel.Location = new System.Drawing.Point(182, 105);
             this.textBoxModel.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
-            this.textBoxModel.MaximumSize = new System.Drawing.Size(265, 4);
+            this.textBoxModel.MaximumSize = new System.Drawing.Size(265, 22);
             this.textBoxModel.MinimumSize = new System.Drawing.Size(4, 22);
             this.textBoxModel.Name = "textBoxModel";
             this.textBoxModel.Size = new System.Drawing.Size(265, 22);
@@ -161,9 +161,9 @@
             // textBoxPrice
             // 
             this.textBoxPrice.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxPrice.Location = new System.Drawing.Point(307, 384);
+            this.textBoxPrice.Location = new System.Drawing.Point(182, 384);
             this.textBoxPrice.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
-            this.textBoxPrice.MaximumSize = new System.Drawing.Size(265, 4);
+            this.textBoxPrice.MaximumSize = new System.Drawing.Size(265, 22);
             this.textBoxPrice.MinimumSize = new System.Drawing.Size(4, 22);
             this.textBoxPrice.Name = "textBoxPrice";
             this.textBoxPrice.Size = new System.Drawing.Size(265, 22);
@@ -172,9 +172,9 @@
             // textBoxAmount
             // 
             this.textBoxAmount.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxAmount.Location = new System.Drawing.Point(307, 291);
+            this.textBoxAmount.Location = new System.Drawing.Point(182, 291);
             this.textBoxAmount.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
-            this.textBoxAmount.MaximumSize = new System.Drawing.Size(265, 4);
+            this.textBoxAmount.MaximumSize = new System.Drawing.Size(265, 22);
             this.textBoxAmount.MinimumSize = new System.Drawing.Size(4, 22);
             this.textBoxAmount.Name = "textBoxAmount";
             this.textBoxAmount.Size = new System.Drawing.Size(265, 22);
@@ -186,7 +186,7 @@
             this.comboBoxCategory.Dock = System.Windows.Forms.DockStyle.Fill;
             this.comboBoxCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxCategory.FormattingEnabled = true;
-            this.comboBoxCategory.Location = new System.Drawing.Point(307, 198);
+            this.comboBoxCategory.Location = new System.Drawing.Point(182, 198);
             this.comboBoxCategory.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
             this.comboBoxCategory.MaximumSize = new System.Drawing.Size(265, 0);
             this.comboBoxCategory.Name = "comboBoxCategory";
@@ -198,7 +198,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1067, 554);
+            this.ClientSize = new System.Drawing.Size(629, 554);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.button1);
             this.Margin = new System.Windows.Forms.Padding(4);
